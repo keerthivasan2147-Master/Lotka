@@ -1,11 +1,15 @@
 services:
   - type: web
     name: lotka
-    runtime: docker
+    env: docker
     plan: free
+    region: oregon
     dockerfilePath: ./Dockerfile
+    dockerContext: .
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production
+      - key: ASPNETCORE_HTTP_PORTS
+        value: "10000"
       - key: PORT
-        value: 10000
+        value: "10000"
