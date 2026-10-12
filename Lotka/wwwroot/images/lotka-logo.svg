@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <!-- LOTKA Modern Vector Logo -->
+  <g fill="#FFFFFF">
+    <!-- L -->
+    <path d="M10 12 H26 V56 H54 V68 H10 Z" />
+    
+    <!-- O with inner red triangular sail icon -->
+    <path d="M72 40 C72 23.5 84.5 12 102 12 C119.5 12 132 23.5 132 40 C132 56.5 119.5 68 102 68 C84.5 68 72 56.5 72 40 Z M88 40 C88 49 93.8 55 102 55 C110.2 55 116 49 116 40 C116 31 110.2 25 102 25 C93.8 25 88 31 88 40 Z" fill="#FFFFFF"/>
+    
+    <!-- Red Triangular / Sail Accent in 'O' -->
+    <polygon points="90,32 114,32 102,51" fill="#DC2626" />
+
+    <!-- T -->
+    <path d="M142 12 H184 V24 H171 V68 H155 V24 H142 Z" />
+
+    <!-- K -->
+    <path d="M196 12 H212 V37 L233 12 H253 L227 42 L255 68 H234 L212 47 V68 H196 Z" />
+
+    <!-- A -->
+    <path d="M284 12 H298 L320 68 H303 L298 55 H284 L279 68 H262 Z M291 26 L287 43 H295 Z" />
+  </g>
+</svg>

@@ -1,0 +1,468 @@
+/* ==========================================================================
+   LOTKA GLOBAL LOGISTICS — DESIGN SYSTEM
+   Full-width images, AED currency, responsive for Desktop / Tablet / Mobile
+   ========================================================================== */
+
+:root {
+    --lotka-navy:       #07111f;
+    --lotka-navy-deep:  #040c18;
+    --lotka-navy-alt:   #0b1a2e;
+    --lotka-card-bg:    rgba(11, 26, 46, 0.82);
+    --lotka-red:        #dc2626;
+    --lotka-red-hover:  #ef4444;
+    --lotka-red-glow:   rgba(220, 38, 38, 0.35);
+    --lotka-blue:       #2563eb;
+    --lotka-cyan:       #0ea5e9;
+    --lotka-gold:       #c29b62;
+    --lotka-border:     rgba(255, 255, 255, 0.11);
+    --lotka-text:       #f1f5f9;
+    --lotka-muted:      #94a3b8;
+    --font-heading:     'Outfit', sans-serif;
+    --font-body:        'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --header-h:         74px;
+    --drawer-w:         320px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body.lotka-dark-theme {
+    margin: 0; padding: 0;
+    background-color: var(--lotka-navy);
+    color: var(--lotka-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    overflow-x: hidden;
+}
+
+h1,h2,h3,h4,h5,h6,
+.display-1,.display-2,.display-3,.display-4,.display-5,.display-6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: var(--lotka-navy-deep); }
+::-webkit-scrollbar-thumb { background: #1a3558; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--lotka-red); }
+
+/* ── SPA Progress Bar ── */
+.spa-loader-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: linear-gradient(90deg, #dc2626, #38bdf8, #dc2626);
+    z-index: 99999; transition: width .3s ease, opacity .4s ease; opacity: 0;
+}
+.spa-loader-bar.loading { opacity: 1; width: 80%; }
+.spa-loader-bar.complete { width: 100%; opacity: 0; }
+
+/* ── Header ── */
+.lotka-header {
+    background: rgba(7, 17, 31, 0.9);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--lotka-border);
+    transition: background .3s; z-index: 1040;
+}
+.brand-logo-img { height: 36px; width: auto; }
+
+.lotka-nav-list .nav-link {
+    color: rgba(255,255,255,.82); font-weight: 500;
+    font-size: .9rem; padding: .45rem .95rem !important;
+    position: relative; transition: color .2s;
+}
+.lotka-nav-list .nav-link:hover,
+.lotka-nav-list .nav-link.active { color: #fff; }
+.lotka-nav-list .nav-link::after {
+    content: ''; position: absolute; bottom: -2px; left: 50%;
+    width: 0; height: 2px; background: var(--lotka-red);
+    transition: width .22s, left .22s;
+}
+.lotka-nav-list .nav-link:hover::after,
+.lotka-nav-list .nav-link.active::after { width: 60%; left: 20%; }
+
+/* ── Buttons ── */
+.btn-lotka-red {
+    background: var(--lotka-red); color: #fff;
+    border: 1px solid var(--lotka-red); border-radius: 7px;
+    box-shadow: 0 4px 14px var(--lotka-red-glow);
+    transition: all .22s;
+}
+.btn-lotka-red:hover, .btn-lotka-red:focus {
+    background: var(--lotka-red-hover); border-color: var(--lotka-red-hover);
+    color: #fff; transform: translateY(-1px);
+    box-shadow: 0 7px 22px rgba(239,68,68,.5);
+}
+.btn-lotka-gold {
+    background: linear-gradient(135deg, #c29b62, #a87f40);
+    color: #fff; border: none; border-radius: 8px;
+    transition: all .22s; letter-spacing: .4px;
+}
+.btn-lotka-gold:hover {
+    background: linear-gradient(135deg, #d4af7a, #ba9155);
+    color: #fff; transform: translateY(-1px);
+}
+
+/* ── SideNav Toggle Button (tablet & mobile) ── */
+.lotka-sidenav-btn {
+    background: rgba(255,255,255,.08); border: 1px solid var(--lotka-border);
+    color: #fff; padding: .42rem .8rem; border-radius: 8px;
+    display: inline-flex; align-items: center; gap: .4rem;
+    transition: all .2s;
+}
+.lotka-sidenav-btn:hover { background: rgba(255,255,255,.15); color: var(--lotka-red); border-color: var(--lotka-red); }
+
+/* ── Off-Canvas SideNav Drawer ── */
+.mobile-drawer-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(3,8,20,.78); backdrop-filter: blur(6px);
+    z-index: 1050; opacity: 0; visibility: hidden;
+    transition: opacity .3s, visibility .3s;
+}
+.mobile-drawer-backdrop.active { opacity: 1; visibility: visible; }
+
+.mobile-drawer {
+    position: fixed; top: 0; left: 0;
+    width: var(--drawer-w); max-width: 85vw; height: 100vh;
+    background: #08132a; border-right: 1px solid var(--lotka-border);
+    z-index: 1060; transform: translateX(-100%);
+    transition: transform .35s cubic-bezier(.16,1,.3,1);
+    display: flex; flex-direction: column; overflow-y: auto;
+    box-shadow: 5px 0 30px rgba(0,0,0,.6);
+}
+.mobile-drawer.active { transform: translateX(0); }
+
+.mobile-drawer-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 1.4rem; border-bottom: 1px solid var(--lotka-border);
+}
+.drawer-close-btn {
+    background: transparent; border: none; color: #fff;
+    font-size: 1.2rem; padding: .3rem .5rem; border-radius: 6px;
+    cursor: pointer; transition: color .2s;
+}
+.drawer-close-btn:hover { color: var(--lotka-red); }
+
+.mobile-drawer-body { padding: 1.4rem; display: flex; flex-direction: column; flex-grow: 1; }
+
+.mobile-nav-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .3rem; }
+.mobile-nav-links .mobile-link {
+    display: flex; align-items: center; gap: .8rem;
+    color: rgba(255,255,255,.85); text-decoration: none;
+    font-size: 1.02rem; font-weight: 500;
+    padding: .72rem 1rem; border-radius: 8px; transition: all .2s;
+}
+.mobile-nav-links .mobile-link i { width: 22px; text-align: center; color: var(--lotka-cyan); }
+.mobile-nav-links .mobile-link:hover,
+.mobile-nav-links .mobile-link.active {
+    background: rgba(220,38,38,.14); color: #fff;
+    border-left: 3px solid var(--lotka-red);
+}
+.mobile-nav-links .mobile-link.active i { color: var(--lotka-red); }
+
+/* ── SPA Container ── */
+.spa-page-container {
+    min-height: calc(100vh - var(--header-h));
+    padding-top: var(--header-h);
+    transition: opacity .22s; opacity: 1;
+}
+.spa-page-container.spa-fade-out { opacity: 0; }
+
+/* ── Glass Panel ── */
+.glass-panel {
+    background: rgba(10,24,50,.78);
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--lotka-border);
+}
+
+/* ── Lotka Cards ── */
+.lotka-card {
+    background: var(--lotka-card-bg);
+    border: 1px solid var(--lotka-border);
+    transition: transform .28s, border-color .28s, box-shadow .28s;
+}
+.lotka-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(56,189,248,.3);
+    box-shadow: 0 12px 32px rgba(0,0,0,.4);
+}
+
+/* ══════════════════════════════════════════════
+   FULL-WIDTH IMAGE SECTIONS
+   ══════════════════════════════════════════════ */
+.lotka-fullwidth-hero,
+.fullwidth-image-feature {
+    position: relative;
+    width: 100%; overflow: hidden;
+}
+
+.fullwidth-image-wrapper,
+.fullwidth-feature-wrapper {
+    position: relative; width: 100%; left: 0;
+}
+
+/* Full-width images — stretch edge to edge, no gaps */
+.fullwidth-hero-img,
+.fullwidth-feature-img {
+    width: 100%; display: block;
+    object-fit: cover; object-position: center;
+    min-height: 540px; max-height: 750px;
+}
+
+/* Gradient overlays for readability of text over each image */
+.fullwidth-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg,
+        rgba(7,17,31,.92) 0%,
+        rgba(7,17,31,.72) 55%,
+        rgba(7,17,31,.35) 100%),
+    linear-gradient(180deg, rgba(7,17,31,.35) 0%, rgba(7,17,31,.9) 100%);
+}
+.fullwidth-hero-overlay-about {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg,
+        rgba(7,17,31,.88) 0%,
+        rgba(7,17,31,.55) 60%,
+        rgba(7,17,31,.20) 100%),
+    linear-gradient(180deg, rgba(7,17,31,.3) 0%, rgba(7,17,31,.85) 100%);
+}
+.fullwidth-feature-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg,
+        rgba(7,17,31,.25) 0%,
+        rgba(7,17,31,.70) 55%,
+        rgba(7,17,31,.92) 100%);
+}
+.fullwidth-feature-overlay-contact {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg,
+        rgba(7,17,31,.20) 0%,
+        rgba(7,17,31,.65) 50%,
+        rgba(7,17,31,.90) 100%);
+}
+.fullwidth-services-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+        rgba(7,17,31,.30) 0%,
+        rgba(7,17,31,.55) 60%,
+        rgba(7,17,31,.92) 100%);
+}
+/* FAQ Page Specific Hero */
+.lotka-faq-hero {
+    position: relative;
+    width: 100%;
+    background: #081933;
+    overflow: hidden;
+}
+.faq-hero-img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center 28%;
+    min-height: 260px;
+    max-height: 540px;
+}
+.fullwidth-benefits-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg,
+        rgba(7,17,31,.5) 0%,
+        rgba(7,17,31,.7) 100%);
+}
+.fullwidth-why-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+        rgba(7,17,31,.15) 0%,
+        rgba(7,17,31,.88) 100%);
+}
+.fullwidth-staff-overlay {
+    position: absolute; inset: 0;
+    background: rgba(5,11,22,.65);
+    backdrop-filter: blur(3px);
+}
+
+/* Text content overlaid directly on full-width images */
+.hero-content-overlay,
+.feature-content-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex; align-items: center;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+}
+.hero-content-overlay { align-items: center; }
+
+/* Min heights to ensure the section frames the image */
+.min-vh-hero { min-height: 540px; display: flex; align-items: center; }
+.min-vh-50   { min-height: 340px; display: flex; align-items: center; }
+
+/* Eyebrow */
+.hero-eyebrow-tag { display: flex; align-items: center; gap: .7rem; }
+.eyebrow-accent-bar { display: inline-block; width: 30px; height: 3px; background: var(--lotka-red); }
+.eyebrow-caption { font-size: .8rem; font-weight: 700; letter-spacing: 2px; color: #fff; }
+
+.hero-main-title { font-weight: 800; line-height: 1.1; }
+
+/* ── Metrics Strip ── */
+.fullwidth-metrics-strip { background: var(--lotka-navy-alt); }
+.metric-num { line-height: 1; }
+
+/* ── Page Sections bg ── */
+.bg-navy-alt { background-color: var(--lotka-navy-alt); }
+
+/* ── Comparison Table ── */
+.lotka-comparison-table th,
+.lotka-comparison-table td {
+    padding: 1rem 1.15rem;
+    border-color: var(--lotka-border);
+}
+.bg-navy-dark { background-color: #030a15 !important; }
+
+/* ── Accordion (FAQ) ── */
+.lotka-accordion .accordion-button {
+    box-shadow: none !important; color: #fff;
+}
+.lotka-accordion .accordion-button:not(.collapsed) { color: #fff; }
+.lotka-accordion .accordion-button::after { filter: invert(1); }
+
+/* ── Benefit Cards ── */
+.benefit-card { transition: transform .25s, box-shadow .25s; }
+.benefit-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.4); }
+
+/* ── Staff Login Page ── */
+.staff-login-section {
+    position: relative; width: 100%; overflow: hidden;
+}
+.staff-glass-card {
+    background: rgba(9,22,45,.84);
+    backdrop-filter: blur(26px); -webkit-backdrop-filter: blur(26px);
+    border: 1px solid rgba(255,255,255,.15);
+}
+.staff-input-group .form-control:focus {
+    box-shadow: 0 0 0 .2rem rgba(194,155,98,.25);
+    border-color: var(--lotka-gold);
+}
+
+/* ── Quote Section ── */
+.quote-breakdown-list .row { border-bottom: 1px solid var(--lotka-border); padding: .6rem 0; }
+.quote-breakdown-list .row:last-child { border-bottom: none; }
+
+/* ── Contact ── */
+.contact-info-item { display: flex; align-items: flex-start; gap: 1rem; padding: .75rem 0; }
+.contact-info-item i { margin-top: 2px; flex-shrink: 0; }
+
+/* ── Footer ── */
+.lotka-footer {
+    background: var(--lotka-navy-deep);
+    border-top: 1px solid var(--lotka-border);
+}
+.footer-nav-links a {
+    color: var(--lotka-muted); text-decoration: none;
+    display: inline-block; padding: .2rem 0; transition: all .2s;
+}
+.footer-nav-links a:hover { color: #fff; padding-left: 4px; }
+.footer-hq-card { background: rgba(255,255,255,.04); border: 1px solid var(--lotka-border); }
+/* Status dot — used in footer and header */
+.status-dot,
+.status-indicator-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #10b981; display: inline-block;
+    box-shadow: 0 0 8px #10b981; animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 8px #10b981; }
+    50% { box-shadow: 0 0 16px #10b981; }
+}
+
+/* ── Legacy page-header-section (fallback for any un-migrated views) ── */
+.page-header-section {
+    background: linear-gradient(135deg, #07111f 0%, #0b1a2e 60%, #0d2240 100%);
+    border-bottom: 1px solid var(--lotka-border);
+    padding-top: calc(var(--header-h) + 1.5rem);
+}
+
+/* ── Mobile Bottom Dock ── */
+.mobile-quick-dock {
+    position: fixed; bottom: 0; left: 0; right: 0; height: 60px;
+    background: rgba(7,17,31,.96); backdrop-filter: blur(14px);
+    border-top: 1px solid var(--lotka-border);
+    display: flex; justify-content: space-around; align-items: center;
+    z-index: 1030; padding: 0 .5rem;
+}
+.dock-item {
+    display: flex; flex-direction: column; align-items: center;
+    color: rgba(255,255,255,.7); text-decoration: none;
+    background: none; border: none; font-size: .73rem; gap: 2px;
+    cursor: pointer; transition: color .2s; min-width: 54px;
+}
+.dock-item i { font-size: 1.1rem; }
+.dock-item:hover { color: var(--lotka-red); }
+
+/* ── Modals ── */
+.lotka-modal .modal-content {
+    background: #0a1832; border: 1px solid var(--lotka-border); color: #fff;
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE MEDIA QUERIES
+   ══════════════════════════════════════════════ */
+
+/* Large desktops (≥1400px) */
+@media (min-width: 1400px) {
+    .hero-main-title { font-size: 4rem; }
+    .fullwidth-hero-img, .fullwidth-feature-img { min-height: 680px; }
+}
+
+/* Standard desktop (≥1200px) */
+@media (min-width: 1200px) {
+    .hero-main-title { font-size: 3.6rem; }
+}
+
+/* Desktop to tablet boundary (992–1199px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .hero-main-title { font-size: 3rem; }
+    .lotka-nav-list .nav-link { padding: .45rem .65rem !important; font-size: .85rem; }
+    .fullwidth-hero-img, .fullwidth-feature-img { min-height: 560px; max-height: 660px; }
+}
+
+/* Tablet (768–991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    :root { --header-h: 68px; --drawer-w: 340px; }
+    .hero-main-title { font-size: 2.5rem; }
+    .fullwidth-hero-img, .fullwidth-feature-img { min-height: 520px; max-height: 620px; }
+    .faq-hero-img { min-height: 340px; max-height: 460px; object-position: center 25%; }
+    .hero-content-overlay, .feature-content-overlay { padding-top: 5rem; padding-bottom: 2.5rem; }
+    .lotka-comparison-table th, .lotka-comparison-table td { padding: .8rem .85rem; font-size: .88rem; }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 767.98px) {
+    :root { --header-h: 62px; --drawer-w: 82vw; }
+    body.lotka-dark-theme { padding-bottom: 62px; }
+
+    .brand-logo-img { height: 28px; }
+    .hero-main-title { font-size: 2rem; line-height: 1.2; }
+    .fullwidth-hero-img, .fullwidth-feature-img { min-height: 420px; max-height: 560px; object-position: 70% center; }
+    .faq-hero-img { min-height: 220px; max-height: 340px; object-position: center 22%; }
+    .hero-content-overlay, .feature-content-overlay { padding-top: 4.5rem; padding-bottom: 2rem; }
+
+    .display-4 { font-size: 2rem; }
+    .display-5 { font-size: 1.75rem; }
+    .display-6 { font-size: 1.45rem; }
+
+    .lotka-comparison-table { font-size: .78rem; }
+    .lotka-comparison-table th, .lotka-comparison-table td { padding: .65rem .55rem; }
+
+    .glass-panel { backdrop-filter: blur(8px); }
+    .mobile-drawer-cta .btn { font-size: .9rem; }
+}
+
+/* Extra small (< 480px) */
+@media (max-width: 480px) {
+    .hero-main-title { font-size: 1.75rem; }
+    .eyebrow-caption { font-size: .7rem; }
+    .fullwidth-hero-img, .fullwidth-feature-img { min-height: 360px; max-height: 480px; object-position: 75% center; }
+    .faq-hero-img { min-height: 190px; max-height: 270px; object-position: center 20%; }
+}

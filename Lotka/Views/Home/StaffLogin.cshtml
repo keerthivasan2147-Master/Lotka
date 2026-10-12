@@ -1,0 +1,75 @@
+@{
+    ViewData["Title"] = "Staff Login | LOTKA People Solutions Results";
+}
+
+<!-- Staff Login Dedicated View matching Image 3 -->
+<section class="staff-login-page-section min-vh-hero d-flex align-items-center justify-content-center py-5 position-relative">
+    <div class="staff-login-bg-overlay"></div>
+    <div class="container position-relative z-1 py-4">
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11">
+                <!-- Brand Header -->
+                <div class="text-center mb-4">
+                    <div class="staff-logo-wrapper mb-2">
+                        <span class="staff-brand-text display-6 fw-bold tracking-widest text-white">LOTK<span class="text-danger">&#9650;</span></span>
+                    </div>
+                    <div class="staff-brand-tagline text-white-50 small tracking-wider text-uppercase">
+                        PEOPLE &bull; SOLUTIONS &bull; RESULTS
+                    </div>
+                </div>
+
+                <!-- Glass Login Card matching User Reference Image -->
+                <div class="staff-glass-card p-4 p-md-5 rounded-4 shadow-2xl border border-secondary border-opacity-25 text-white">
+                    <h2 class="h3 fw-semibold text-center mb-4">Staff Login</h2>
+
+                    <div id="staffLoginAlert" class="alert d-none small" role="alert"></div>
+
+                    <form id="dedicatedStaffForm" onsubmit="event.preventDefault(); handleStaffLoginSubmit();">
+                        <!-- Email Input -->
+                        <div class="mb-3">
+                            <label class="form-label text-white-50 small">Email Address</label>
+                            <div class="input-group input-group-lg staff-input-group">
+                                <span class="input-group-text bg-transparent border-secondary text-white-50">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </span>
+                                <input type="email" id="staffEmailInput" class="form-control bg-transparent text-white border-secondary" placeholder="Enter corporate email" value="dxb.operations@lotka.com" required />
+                            </div>
+                        </div>
+
+                        <!-- Password Input with Show/Hide Toggle -->
+                        <div class="mb-4">
+                            <label class="form-label text-white-50 small">Password</label>
+                            <div class="input-group input-group-lg staff-input-group">
+                                <span class="input-group-text bg-transparent border-secondary text-white-50">
+                                    <i class="fa-solid fa-lock"></i>
+                                </span>
+                                <input type="password" id="staffPasswordInput" class="form-control bg-transparent text-white border-secondary" placeholder="Enter password" value="lotka2026dxb" required />
+                                <button type="button" class="btn btn-outline-secondary border-secondary text-white-50" id="togglePasswordBtn" onclick="togglePasswordVisibility()" aria-label="Toggle Password Visibility">
+                                    <i class="fa-regular fa-eye" id="togglePasswordIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Golden / Bronze Login Button matching User Reference -->
+                        <div class="d-grid mb-3">
+                            <button type="submit" id="staffSubmitBtn" class="btn btn-lotka-gold btn-lg fw-semibold py-3 shadow">
+                                Login
+                            </button>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center text-white-50 small mt-3">
+                            <a href="#" class="text-white-50 text-decoration-none" onclick="alert('Please contact Dubai IT Security Helpdesk at ext 104 or support@lotka.com'); return false;">Forgot Password?</a>
+                            <span>JAFZA Command &bull; v2.4</span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="/Home/Index" class="spa-link text-white-50 text-decoration-none small" data-page="Index">
+                        &larr; Return to LOTKA Global Public Portal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

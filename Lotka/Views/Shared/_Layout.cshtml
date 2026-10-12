@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>@ViewData["Title"] - LOTKA Global Logistics</title>
+    <meta name="description" content="LOTKA Global Logistics combines Human Expertise with Autonomous AI to move business forward. Air, Ocean & Land freight with instant quotes and real-time tracking from Dubai JAFZA." />
+    <meta name="theme-color" content="#09152e" />
+
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Site CSS with Media Queries -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="lotka-dark-theme">
+    <!-- Top SPA Progress Loading Bar -->
+    <div id="spa-loader" class="spa-loader-bar" role="progressbar" aria-hidden="true"></div>
+
+    <!-- Main Global Header -->
+    <header class="lotka-header fixed-top">
+        <div class="container-fluid px-lg-5">
+            <nav class="navbar navbar-expand-lg navbar-dark py-2 py-lg-3">
+                <!-- Brand Logo -->
+                <a class="navbar-brand spa-link d-flex align-items-center" href="/Home/Index" data-page="Index" aria-label="LOTKA Home">
+                    <img src="~/images/lotka-logo.svg" alt="LOTKA Logo" class="brand-logo-img" />
+                </a>
+
+                <!-- Tablet & Mobile SideNav Trigger Button -->
+                <button class="btn lotka-sidenav-btn d-lg-none ms-auto me-2" type="button" id="sideNavToggleBtn" aria-label="Open Side Navigation Menu">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                    <span class="d-none d-sm-inline ms-1 small fw-semibold">MENU</span>
+                </button>
+
+                <!-- Desktop Navigation Menu -->
+                <div class="collapse navbar-collapse d-none d-lg-flex justify-content-center" id="desktopNavbar">
+                    <ul class="navbar-nav mx-auto align-items-center lotka-nav-list">
+                        <li class="nav-item">
+                            <a class="nav-link spa-link @(ViewData["ActivePage"]?.ToString() == "Index" ? "active" : "")" href="/Home/Index" data-page="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link spa-link @(ViewData["ActivePage"]?.ToString() == "About" ? "active" : "")" href="/Home/About" data-page="About">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link spa-link @(ViewData["ActivePage"]?.ToString() == "Services" ? "active" : "")" href="/Home/Services" data-page="Services">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link spa-link @(ViewData["ActivePage"]?.ToString() == "WhyLotka" ? "active" : "")" href="/Home/WhyLotka" data-page="WhyLotka">Why LOTKA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link spa-link @(ViewData["ActivePage"]?.ToString() == "Benefits" ? "active" : "")" href="/Home/Benefits" data-page="Benefits">Benefits</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link spa-link @(ViewData["ActivePage"]?.ToString() == "Faq" ? "active" : "")" href="/Home/Faq" data-page="Faq">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link spa-link @(ViewData["ActivePage"]?.ToString() == "Contact" ? "active" : "")" href="/Home/Contact" data-page="Contact">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link spa-link @(ViewData["ActivePage"]?.ToString() == "StaffLogin" ? "active" : "") text-white-50" href="/Home/StaffLogin" data-page="StaffLogin">staff login</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Header Actions (CTA) -->
+                <div class="d-none d-sm-flex align-items-center gap-2">
+                    <a href="/Home/Quote" class="btn btn-lotka-red spa-link px-3 py-2 fw-semibold" data-page="Quote">
+                        Get a Quote
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Tablet & Mobile Off-Canvas Navigation Drawer (SideNav) -->
+    <div id="mobileDrawerBackdrop" class="mobile-drawer-backdrop"></div>
+    <aside id="mobileDrawer" class="mobile-drawer" aria-label="Side Navigation Drawer">
+        <div class="mobile-drawer-header">
+            <a href="/Home/Index" class="spa-link mobile-drawer-logo" data-page="Index">
+                <img src="~/images/lotka-logo.svg" alt="LOTKA Logo" height="28" />
+            </a>
+            <button type="button" id="closeDrawerBtn" class="drawer-close-btn" aria-label="Close Navigation Menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="mobile-drawer-body">
+            <ul class="mobile-nav-links">
+                <li><a href="/Home/Index" class="mobile-link spa-link @(ViewData["ActivePage"]?.ToString() == "Index" ? "active" : "")" data-page="Index"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="/Home/About" class="mobile-link spa-link @(ViewData["ActivePage"]?.ToString() == "About" ? "active" : "")" data-page="About"><i class="fa-solid fa-users-gear"></i> About Us</a></li>
+                <li><a href="/Home/Services" class="mobile-link spa-link @(ViewData["ActivePage"]?.ToString() == "Services" ? "active" : "")" data-page="Services"><i class="fa-solid fa-truck-plane"></i> Services</a></li>
+                <li><a href="/Home/WhyLotka" class="mobile-link spa-link @(ViewData["ActivePage"]?.ToString() == "WhyLotka" ? "active" : "")" data-page="WhyLotka"><i class="fa-solid fa-chart-line"></i> Why LOTKA</a></li>
+                <li><a href="/Home/Benefits" class="mobile-link spa-link @(ViewData["ActivePage"]?.ToString() == "Benefits" ? "active" : "")" data-page="Benefits"><i class="fa-solid fa-award"></i> Benefits</a></li>
+                <li><a href="/Home/Faq" class="mobile-link spa-link @(ViewData["ActivePage"]?.ToString() == "Faq" ? "active" : "")" data-page="Faq"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
+                <li><a href="/Home/Contact" class="mobile-link spa-link @(ViewData["ActivePage"]?.ToString() == "Contact" ? "active" : "")" data-page="Contact"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+                <li><a href="/Home/StaffLogin" class="mobile-link spa-link @(ViewData["ActivePage"]?.ToString() == "StaffLogin" ? "active" : "")" data-page="StaffLogin"><i class="fa-solid fa-lock"></i> Staff Login</a></li>
+            </ul>
+
+            <div class="mobile-drawer-cta mt-4">
+                <a href="/Home/Quote" class="btn btn-lotka-red w-100 spa-link mb-2" data-page="Quote">
+                    <i class="fa-solid fa-calculator me-1"></i> Get a Quote
+                </a>
+                <button type="button" class="btn btn-dark w-100 text-white-50" data-bs-toggle="modal" data-bs-target="#staffLoginModal">
+                    <i class="fa-solid fa-lock me-1"></i> Staff Portal Login
+                </button>
+            </div>
+
+            <div class="mobile-contact-info mt-4 pt-3 border-top border-secondary border-opacity-25 text-white-50 small">
+                <div><i class="fa-solid fa-location-dot text-danger me-2"></i> JAFZA One, Jebel Ali, Dubai, UAE</div>
+                <div class="mt-2"><i class="fa-solid fa-phone text-danger me-2"></i> +971 4 8818618</div>
+                <div class="mt-2"><i class="fa-solid fa-envelope text-danger me-2"></i> info@lotka.com</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- SPA Dynamic Content Container (Updated without full reloading!) -->
+    <main role="main" id="spa-container" class="spa-page-container">
+        @RenderBody()
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="lotka-footer text-light pt-5 pb-4 mt-auto">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <!-- Col 1: Brand & AI Vision -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand mb-3">
+                        <img src="~/images/lotka-logo.svg" alt="LOTKA Logo" height="32" />
+                    </div>
+                    <p class="text-white-50 pe-lg-3 small">
+                        Pioneering the future of global multimodal logistics. By orchestrating human shipping expertise with high-frequency cognitive AI, LOTKA delivers unparalleled speed, predictive precision, and total cargo transparency worldwide.
+                    </p>
+                    <div class="d-flex align-items-center gap-2 mt-3">
+                        <span class="status-indicator-dot"></span>
+                        <span class="small text-info">Autonomous AI Routing: Operational (99.98% SLA)</span>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation Links -->
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h6 class="footer-heading text-uppercase text-white fw-bold mb-3">Company</h6>
+                    <ul class="list-unstyled footer-nav-links small">
+                        <li><a href="/Home/Index" class="spa-link" data-page="Index">Home</a></li>
+                        <li><a href="/Home/About" class="spa-link" data-page="About">About Us</a></li>
+                        <li><a href="/Home/WhyLotka" class="spa-link" data-page="WhyLotka">Why LOTKA</a></li>
+                        <li><a href="/Home/Benefits" class="spa-link" data-page="Benefits">Benefits</a></li>
+                        <li><a href="/Home/Faq" class="spa-link" data-page="Faq">FAQ</a></li>
+                        <li><a href="/Home/Contact" class="spa-link" data-page="Contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Services -->
+                <div class="col-lg-3 col-md-6 col-6">
+                    <h6 class="footer-heading text-uppercase text-white fw-bold mb-3">Solutions</h6>
+                    <ul class="list-unstyled footer-nav-links small">
+                        <li><a href="/Home/Services" class="spa-link" data-page="Services">Air Freight Priority</a></li>
+                        <li><a href="/Home/Services" class="spa-link" data-page="Services">Ocean Cargo (FCL & LCL)</a></li>
+                        <li><a href="/Home/Services" class="spa-link" data-page="Services">Land & GCC Cross-Border</a></li>
+                        <li><a href="/Home/Services" class="spa-link" data-page="Services">AI Dynamic Routing Engine</a></li>
+                        <li><a href="/Home/Services" class="spa-link" data-page="Services">JAFZA Bonded Warehousing</a></li>
+                        <li><a href="/Home/Services" class="spa-link" data-page="Services">Automated Customs Clearance</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Dubai Global Headquarters -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="footer-heading text-uppercase text-white fw-bold mb-3">Global Headquarters</h6>
+                    <div class="footer-hq-card p-3 rounded small">
+                        <div class="fw-semibold text-white mb-1">Lotka Shipping Services LLC</div>
+                        <div class="text-white-50">P.O. Box: 215142</div>
+                        <div class="text-white-50">JAFZA One, Office No: FZJOBB1906</div>
+                        <div class="text-white-50 mb-2">Jebel Ali Freezone, Dubai, UAE</div>
+                        <div class="mt-2 text-white">
+                            <i class="fa-solid fa-phone text-danger me-2"></i>
+                            <a href="tel:+97148818618" class="text-white text-decoration-none">+971 4 8818618</a>
+                        </div>
+                        <div class="mt-1 text-white">
+                            <i class="fa-solid fa-envelope text-danger me-2"></i>
+                            <a href="mailto:info@lotka.com" class="text-white text-decoration-none">info@lotka.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright & Badges -->
+            <div class="border-top border-secondary border-opacity-25 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 small text-white-50">
+                <div>
+                    &copy; 2026 Lotka Shipping Services LLC. All rights reserved. Registered under Dubai JAFZA Authority.
+                </div>
+                <div class="d-flex gap-3">
+                    <a href="/Home/Privacy" class="text-white-50 text-decoration-none">Privacy Policy</a>
+                    <span>•</span>
+                    <a href="/Home/Faq" class="text-white-50 text-decoration-none spa-link" data-page="Faq">Terms of Carriage</a>
+                    <span>•</span>
+                    <a href="#" class="text-white-50 text-decoration-none" data-bs-toggle="modal" data-bs-target="#staffLoginModal">Staff Access</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky Quick Dock (Visible on Mobile & Tablet) -->
+    <div class="mobile-quick-dock d-lg-none" role="navigation" aria-label="Mobile Quick Actions">
+        <a href="/Home/Quote" class="dock-item spa-link" data-page="Quote">
+            <i class="fa-solid fa-calculator"></i>
+            <span>Quote</span>
+        </a>
+        <a href="/Home/Services" class="dock-item spa-link" data-page="Services">
+            <i class="fa-solid fa-truck-plane"></i>
+            <span>Services</span>
+        </a>
+        <a href="tel:+97148818618" class="dock-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>Call</span>
+        </a>
+        <a href="/Home/Contact" class="dock-item spa-link" data-page="Contact">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Dubai HQ</span>
+        </a>
+    </div>
+
+    <!-- MODAL 1: Track Shipment Modal -->
+    <div class="modal fade lotka-modal" id="trackShipmentModal" tabindex="-1" aria-labelledby="trackModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-white d-flex align-items-center gap-2" id="trackModalTitle">
+                        <i class="fa-solid fa-satellite-dish text-primary"></i> Real-Time AI Cargo Telemetry
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-target="#trackShipmentModal" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="trackModalForm" class="d-flex gap-2 mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text bg-dark border-secondary text-white-50"><i class="fa-solid fa-barcode"></i></span>
+                            <input type="text" id="modalTrackingInput" class="form-control bg-dark text-white border-secondary" placeholder="Enter B/L or Container No (e.g., LOTKA-8942-DXB)" value="LOTKA-8942-DXB" required />
+                        </div>
+                        <button type="submit" class="btn btn-lotka-red text-nowrap px-4">
+                            <i class="fa-solid fa-search me-1"></i> Track Now
+                        </button>
+                    </form>
+
+                    <!-- Tracking Result Display Container -->
+                    <div id="modalTrackingResult" class="tracking-result-box">
+                        <div class="text-center py-3 text-white-50">
+                            <i class="fa-solid fa-spinner fa-spin me-2"></i> Initializing satellite feed...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: Staff Login Modal -->
+    <div class="modal fade lotka-modal" id="staffLoginModal" tabindex="-1" aria-labelledby="staffModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-white d-flex align-items-center gap-2" id="staffModalTitle">
+                        <i class="fa-solid fa-shield-halved text-danger"></i> LOTKA Staff & Dispatch Portal
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-white-50 small mb-3">Authorized access for Dubai JAFZA operations managers, AI fleet dispatchers, and customs agents.</p>
+                    <form id="staffLoginForm" onsubmit="event.preventDefault(); alert('Demo environment: Staff credentials simulated successfully.'); $('#staffLoginModal').modal('hide');">
+                        <div class="mb-3">
+                            <label class="form-label text-white small">Employee ID or Corporate Email</label>
+                            <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="agent@lotka.com" required value="dxb.dispatcher@lotka.com" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white small">Portal Password</label>
+                            <input type="password" class="form-control bg-dark text-white border-secondary" value="••••••••••••" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white small">Assigned Terminal / Node</label>
+                            <select class="form-select bg-dark text-white border-secondary">
+                                <option selected>Dubai JAFZA One - Terminal Command</option>
+                                <option>Rotterdam Multimodal Node</option>
+                                <option>Singapore Maritime Operations</option>
+                                <option>Houston Americas Terminal</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-lotka-red w-100 py-2 fw-semibold">
+                            Authenticate & Enter Terminal
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Dependencies -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Seamless SPA Navigation & Client Logic -->
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
