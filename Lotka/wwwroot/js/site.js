@@ -422,7 +422,7 @@
         });
     }
 
-    // FAQ Keyword Search Filter
+    // FAQ Keyword Search Filter & Prompt Pills
     function initFaqFilter() {
         const searchInput = document.getElementById('faqSearchInput');
         if (!searchInput) return;
@@ -432,8 +432,8 @@
             const items = document.querySelectorAll('#faqAccordion .accordion-item');
 
             items.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                if (text.includes(query)) {
+                const text = (item.textContent + ' ' + (item.getAttribute('data-tags') || '')).toLowerCase();
+                if (!query || text.includes(query)) {
                     item.style.display = '';
                 } else {
                     item.style.display = 'none';
@@ -441,6 +441,14 @@
             });
         });
     }
+
+    window.filterFaqTag = function (tag) {
+        const input = document.getElementById('faqSearchInput');
+        if (input) {
+            input.value = tag;
+            input.dispatchEvent(new Event('input'));
+        }
+    };
 
     // Benefits Page Human vs AI Switcher
     window.switchBenefitMode = function (mode) {

@@ -19,36 +19,44 @@
     --lotka-muted:      #94a3b8;
     --font-heading:     'Outfit', sans-serif;
     --font-body:        'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --header-h:         74px;
+    --header-h:         72px;
+    --dock-h:           0px;
     --drawer-w:         320px;
 }
 
-/* ── Reset ── */
+/* ── Reset & No Scrollbar (Fixed Fullscreen Viewport) ── */
 *, *::before, *::after { box-sizing: border-box; }
-html { font-size: 16px; scroll-behavior: smooth; }
+html {
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
 
 body.lotka-dark-theme {
     margin: 0; padding: 0;
-    background-color: var(--lotka-navy);
+    background-color: #0a2246;
     color: var(--lotka-text);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
     display: flex; flex-direction: column;
-    overflow-x: hidden;
+    overflow: hidden !important;
+    position: fixed;
+    inset: 0;
 }
-
-h1,h2,h3,h4,h5,h6,
-.display-1,.display-2,.display-3,.display-4,.display-5,.display-6 {
-    font-family: var(--font-heading);
-    letter-spacing: -0.02em;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 7px; }
-::-webkit-scrollbar-track { background: var(--lotka-navy-deep); }
-::-webkit-scrollbar-thumb { background: #1a3558; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--lotka-red); }
 
 /* ── SPA Progress Bar ── */
 .spa-loader-bar {
@@ -163,11 +171,19 @@ h1,h2,h3,h4,h5,h6,
 }
 .mobile-nav-links .mobile-link.active i { color: var(--lotka-red); }
 
-/* ── SPA Container ── */
+/* ── SPA Container (Exact fit without any scrollbar) ── */
 .spa-page-container {
-    min-height: calc(100vh - var(--header-h));
-    padding-top: var(--header-h);
-    transition: opacity .22s; opacity: 1;
+    height: calc(100vh - var(--header-h) - var(--dock-h));
+    max-height: calc(100vh - var(--header-h) - var(--dock-h));
+    margin-top: var(--header-h);
+    padding: 0 !important;
+    overflow: hidden !important;
+    width: 100%;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    transition: opacity .22s;
+    opacity: 1;
 }
 .spa-page-container.spa-fade-out { opacity: 0; }
 
@@ -191,27 +207,43 @@ h1,h2,h3,h4,h5,h6,
 }
 
 /* ══════════════════════════════════════════════
-   FULL-WIDTH IMAGE SECTIONS
+   FULL-WIDTH IMAGE SECTIONS (Fixed Normal Width, Picture First)
    ══════════════════════════════════════════════ */
 .lotka-fullwidth-hero,
 .fullwidth-image-feature {
     position: relative;
-    width: 100%; overflow: hidden;
+    width: 100%;
+    height: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
 }
 
 .fullwidth-image-wrapper,
 .fullwidth-feature-wrapper {
-    position: relative; width: 100%; left: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-/* Full-width picture styling — bright, vivid, attractive (Picture Way) */
+/* Full-width picture styling — crystal clear, bright, vivid (Picture Way) */
 .fullwidth-hero-img,
-.fullwidth-feature-img,
-.faq-hero-img {
-    width: 100%; display: block;
-    object-fit: cover; object-position: center;
-    min-height: 540px; max-height: 750px;
+.fullwidth-feature-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
     filter: contrast(1.05) saturate(1.08) brightness(1.02);
+    image-rendering: -webkit-optimize-contrast;
     transition: filter 0.3s ease;
 }
 
@@ -227,20 +259,221 @@ h1,h2,h3,h4,h5,h6,
     display: none !important;
 }
 
-/* FAQ Page Specific Hero */
+/* FAQ Page Specific Hero & Sharp Image Presentation */
 .lotka-faq-hero {
     position: relative;
     width: 100%;
-    background: #081933;
+    height: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    background: #0a2246;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .faq-hero-img {
     width: 100%;
+    height: 100%;
     display: block;
-    object-fit: cover;
-    object-position: center 28%;
-    min-height: 260px;
-    max-height: 540px;
+    object-fit: contain;
+    object-position: center center;
+    filter: contrast(1.05) saturate(1.08) brightness(1.02);
+    image-rendering: -webkit-optimize-contrast;
+}
+@media (min-width: 1200px) {
+    .faq-hero-img {
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+
+/* ── FAQ AI Buzzer Hotspot (Over the Red Buzzer on Desk) ── */
+.faq-ai-buzzer-hotspot {
+    position: absolute;
+    left: 32.5%;
+    bottom: 23%;
+    transform: translate(-50%, 50%);
+    width: 82px;
+    height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.4) 0%, rgba(220, 38, 38, 0) 70%);
+    border: 2px solid rgba(239, 68, 68, 0.7);
+    cursor: pointer;
+    z-index: 25;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    animation: buzzer-pulse 2.2s infinite ease-in-out;
+}
+.faq-ai-buzzer-hotspot:hover {
+    transform: translate(-50%, 50%) scale(1.12);
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.8) 0%, rgba(220, 38, 38, 0.2) 80%);
+    border-color: #ef4444;
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.9);
+}
+.faq-ai-buzzer-hotspot .buzzer-text-hint {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0,0,0,0.9);
+    pointer-events: none;
+}
+@keyframes buzzer-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(239, 68, 68, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+/* ── FAQ Floating Action / Trigger Bar ── */
+.faq-action-bar {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 30;
+    pointer-events: auto;
+}
+.btn-lotka-ai-buzzer {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    border: 2px solid #ef4444;
+    color: #ffffff !important;
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: 50px;
+    box-shadow: 0 0 22px rgba(220, 38, 38, 0.65);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    transition: all 0.25s ease;
+}
+.btn-lotka-ai-buzzer:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 0 32px rgba(239, 68, 68, 0.9);
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    border-color: #fca5a5;
+}
+.ai-dot-live {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+    display: inline-block;
+}
+
+/* ── Get Quote Dual Action Bar (Human & AI Buttons) ── */
+.quote-action-bar {
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    z-index: 30;
+    pointer-events: auto;
+}
+.btn-quote-choice {
+    background: rgba(10, 24, 52, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-weight: 700;
+    padding: 11px 26px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.96rem;
+    transition: all 0.25s ease;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+.btn-quote-human {
+    border-color: #38bdf8;
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+}
+.btn-quote-human:hover {
+    background: #0284c7;
+    border-color: #7dd3fc;
+    color: #fff;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 30px rgba(56, 189, 248, 0.7);
+}
+.btn-quote-ai {
+    border-color: #dc2626;
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.35);
+}
+.btn-quote-ai:hover {
+    background: #dc2626;
+    border-color: #f87171;
+    color: #fff;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.7);
+}
+
+/* ── About Us Separate Content Floating Cards ── */
+.about-split-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4%;
+    pointer-events: none;
+    z-index: 20;
+}
+.about-heritage-card,
+.about-ai-card {
+    pointer-events: auto;
+    max-width: 380px;
+    background: rgba(8, 20, 44, 0.84);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+    color: #ffffff;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.about-heritage-card {
+    border-left: 4px solid var(--lotka-gold);
+}
+.about-ai-card {
+    border-right: 4px solid var(--lotka-cyan);
+    text-align: right;
+}
+.about-heritage-card:hover,
+.about-ai-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.8);
+}
+.about-center-action {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: auto;
+    z-index: 25;
 }
 
 /* ── Picture Way: Benefits Split Layout (Flanking Left & Right) ── */
@@ -413,75 +646,136 @@ h1,h2,h3,h4,h5,h6,
 }
 
 /* ══════════════════════════════════════════════
-   RESPONSIVE MEDIA QUERIES
+   RESPONSIVE MEDIA QUERIES (Zero Scrollbar Architecture)
    ══════════════════════════════════════════════ */
 
 /* Large desktops (≥1400px) */
 @media (min-width: 1400px) {
-    .hero-main-title { font-size: 4rem; }
-    .fullwidth-hero-img, .fullwidth-feature-img { min-height: 680px; }
+    .hero-main-title { font-size: 3.8rem; }
 }
 
 /* Standard desktop (≥1200px) */
 @media (min-width: 1200px) {
-    .hero-main-title { font-size: 3.6rem; }
+    .hero-main-title { font-size: 3.4rem; }
 }
 
 /* Desktop to tablet boundary (992–1199px) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    .hero-main-title { font-size: 3rem; }
+    .hero-main-title { font-size: 2.8rem; }
     .lotka-nav-list .nav-link { padding: .45rem .65rem !important; font-size: .85rem; }
-    .fullwidth-hero-img, .fullwidth-feature-img { min-height: 560px; max-height: 660px; }
+    .about-heritage-card, .about-ai-card { max-width: 320px; padding: 1.1rem 1.2rem; }
 }
 
 /* Tablet (768–991px) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-    :root { --header-h: 68px; --drawer-w: 340px; }
-    .hero-main-title { font-size: 2.5rem; }
-    .fullwidth-hero-img, .fullwidth-feature-img { min-height: 520px; max-height: 620px; }
-    .faq-hero-img { min-height: 340px; max-height: 460px; object-position: center 25%; }
+    :root { --header-h: 64px; --dock-h: 56px; --drawer-w: 320px; }
+    .hero-main-title { font-size: 2.3rem; }
     .benefit-badge { font-size: 1.15rem; }
     .contact-skyline-panel { font-size: 0.85rem; }
-    .hero-content-overlay, .feature-content-overlay { padding-top: 5rem; padding-bottom: 2.5rem; }
+    .hero-content-overlay, .feature-content-overlay { padding-top: 3.5rem; padding-bottom: 2rem; }
     .lotka-comparison-table th, .lotka-comparison-table td { padding: .8rem .85rem; font-size: .88rem; }
+
+    .faq-ai-buzzer-hotspot {
+        width: 70px;
+        height: 44px;
+        left: 32.5%;
+        bottom: 23%;
+    }
+    .about-heritage-card, .about-ai-card {
+        max-width: 290px;
+        padding: 0.95rem 1.1rem;
+        font-size: 0.88rem;
+    }
+    .about-heritage-card h2, .about-ai-card h2 {
+        font-size: 1.15rem !important;
+    }
 }
 
 /* Mobile (< 768px) */
 @media (max-width: 767.98px) {
-    :root { --header-h: 62px; --drawer-w: 82vw; }
-    body.lotka-dark-theme { padding-bottom: 62px; }
+    :root { --header-h: 60px; --dock-h: 54px; --drawer-w: 82vw; }
 
-    .brand-logo-img { height: 28px; }
-    .hero-main-title { font-size: 2rem; line-height: 1.2; }
-    .fullwidth-hero-img, .fullwidth-feature-img { min-height: 420px; max-height: 560px; object-position: 70% center; }
-    .faq-hero-img { min-height: 220px; max-height: 340px; object-position: center 22%; }
-    .hero-content-overlay, .feature-content-overlay { padding-top: 4.5rem; padding-bottom: 2rem; }
+    .brand-logo-img { height: 26px; }
+    .hero-main-title { font-size: 1.85rem; line-height: 1.2; }
+    .hero-content-overlay, .feature-content-overlay { padding-top: 2rem; padding-bottom: 1.5rem; }
+
+    .faq-ai-buzzer-hotspot {
+        width: 60px;
+        height: 38px;
+        left: 32.5%;
+        bottom: 24%;
+    }
+    .faq-action-bar,
+    .quote-action-bar {
+        bottom: 12px;
+        gap: 8px;
+        width: 94%;
+        justify-content: center;
+    }
+    .btn-lotka-ai-buzzer {
+        font-size: 0.82rem;
+        padding: 8px 16px;
+    }
+    .btn-quote-choice {
+        font-size: 0.82rem;
+        padding: 8px 14px;
+        gap: 6px;
+    }
+
+    .about-split-content {
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px 14px;
+    }
+    .about-heritage-card,
+    .about-ai-card {
+        max-width: 100%;
+        width: 100%;
+        padding: 0.75rem 0.9rem;
+        border-radius: 10px;
+        font-size: 0.82rem;
+    }
+    .about-ai-card {
+        text-align: left;
+        border-right: none;
+        border-left: 4px solid var(--lotka-cyan);
+    }
+    .about-center-action {
+        bottom: 10px;
+    }
+    .about-center-action .btn {
+        font-size: 0.78rem;
+        padding: 6px 14px;
+    }
 
     .benefits-split-layout {
         position: relative;
         flex-direction: column;
-        padding: 2rem 1.5rem;
-        gap: 1.2rem;
+        padding: 1.5rem 1rem;
+        gap: 1rem;
     }
-    .benefit-col { gap: 0.9rem; text-align: center; }
-    .benefit-badge { font-size: 1.1rem; }
-    .contact-skyline-panel { text-align: center; padding: 1.5rem; }
+    .benefit-col { gap: 0.7rem; text-align: center; }
+    .benefit-badge { font-size: 1rem; }
+    .contact-skyline-panel { text-align: center; padding: 1rem; font-size: 0.82rem; }
 
-    .display-4 { font-size: 2rem; }
-    .display-5 { font-size: 1.75rem; }
-    .display-6 { font-size: 1.45rem; }
-
-    .lotka-comparison-table { font-size: .78rem; }
-    .lotka-comparison-table th, .lotka-comparison-table td { padding: .65rem .55rem; }
+    .display-4 { font-size: 1.8rem; }
+    .display-5 { font-size: 1.5rem; }
+    .display-6 { font-size: 1.3rem; }
 
     .glass-panel { backdrop-filter: blur(8px); }
-    .mobile-drawer-cta .btn { font-size: .9rem; }
+    .mobile-drawer-cta .btn { font-size: .88rem; }
 }
 
 /* Extra small (< 480px) */
 @media (max-width: 480px) {
-    .hero-main-title { font-size: 1.75rem; }
-    .eyebrow-caption { font-size: .7rem; }
-    .fullwidth-hero-img, .fullwidth-feature-img { min-height: 360px; max-height: 480px; object-position: 75% center; }
-    .faq-hero-img { min-height: 190px; max-height: 270px; object-position: center 20%; }
+    .hero-main-title { font-size: 1.6rem; }
+    .eyebrow-caption { font-size: .68rem; }
+    .btn-quote-choice {
+        font-size: 0.76rem;
+        padding: 7px 12px;
+    }
+    .btn-lotka-ai-buzzer {
+        font-size: 0.76rem;
+        padding: 7px 14px;
+    }
 }

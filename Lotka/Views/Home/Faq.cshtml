@@ -2,9 +2,8 @@
     ViewData["Title"] = "FAQ | Questions on Freight, Tracking & AED Quotes";
 }
 
-
-<!-- ─── HERO: Full-Width AI Desk Banner for FAQ (image 4) ─── -->
-<section class="lotka-fullwidth-hero lotka-faq-hero">
+<!-- ─── HERO: Full-Width AI Desk Banner for FAQ with Interactive AI Button & Separate Content ─── -->
+<section class="lotka-fullwidth-hero lotka-faq-hero position-relative">
     <div class="fullwidth-image-wrapper">
         <img src="~/images/faq-hero.png"
              alt="LOTKA FAQ – Smarter Questions, Brighter Answers"
@@ -13,6 +12,158 @@
 
     <!-- Visually hidden heading for SEO & Accessibility -->
     <h1 class="visually-hidden">Frequently Asked Questions – Smarter Questions, Brighter Answers</h1>
+
+    <!-- ── Interactive "AI" Buzzer Hotspot (Placed directly over the red desk buzzer) ── -->
+    <button type="button" 
+            class="faq-ai-buzzer-hotspot" 
+            id="faqAiBuzzerHotspot" 
+            data-bs-toggle="modal" 
+            data-bs-target="#lotkaAiFaqModal"
+            title="Press AI Button to Activate Intelligent FAQ"
+            aria-label="Activate LOTKA AI Assistant">
+        <span class="buzzer-text-hint">AI</span>
+    </button>
+
+    <!-- ── Interactive Action Bar with AI Button & Browse Questions ── -->
+    <div class="faq-action-bar">
+        <button type="button" 
+                class="btn btn-lotka-ai-buzzer" 
+                id="btnFaqAi" 
+                data-bs-toggle="modal" 
+                data-bs-target="#lotkaAiFaqModal" 
+                aria-label="Open AI Assistant">
+            <span class="ai-dot-live"></span>
+            <span><strong>AI</strong> — Ask Intelligent FAQ</span>
+        </button>
+        <button type="button" 
+                class="btn btn-outline-light rounded-pill px-3 py-2 fw-semibold d-none d-sm-inline-flex align-items-center gap-2" 
+                style="background: rgba(10, 24, 52, 0.75); backdrop-filter: blur(10px); border-color: rgba(255,255,255,0.25);"
+                data-bs-toggle="modal" 
+                data-bs-target="#lotkaAiFaqModal">
+            <i class="fa-solid fa-list-check text-info"></i>
+            <span>Browse Topics</span>
+        </button>
+    </div>
 </section>
 
+<!-- ─── SEPARATE CONTENT: LOTKA AI & Logistics Knowledge Modal ─── -->
+<div class="modal fade lotka-modal" id="lotkaAiFaqModal" tabindex="-1" aria-labelledby="faqModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content border-secondary border-opacity-25 shadow-2xl">
+            <!-- Modal Header -->
+            <div class="modal-header border-bottom border-secondary border-opacity-25 pb-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-danger px-2 py-1 fw-bold">AI</span>
+                    <h5 class="modal-title fw-bold text-white mb-0" id="faqModalTitle">
+                        LOTKA Intelligent Knowledge Base
+                    </h5>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
+            <!-- Modal Body -->
+            <div class="modal-body p-3 p-md-4">
+                <!-- Search bar -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-dark text-white-50 border-secondary"><i class="fa-solid fa-search"></i></span>
+                    <input type="text" id="faqSearchInput" class="form-control bg-dark text-white border-secondary" placeholder="Search rates in AED, satellite tracking, customs clearance, transit times..." />
+                </div>
+
+                <!-- Quick Prompt Pills -->
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-white-50 py-1 px-3 border-secondary" onclick="filterFaqTag('AED')">
+                        <i class="fa-solid fa-coins text-warning me-1"></i> Rates in AED
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-white-50 py-1 px-3 border-secondary" onclick="filterFaqTag('Tracking')">
+                        <i class="fa-solid fa-satellite-dish text-info me-1"></i> Satellite Tracking
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-white-50 py-1 px-3 border-secondary" onclick="filterFaqTag('Customs')">
+                        <i class="fa-solid fa-passport text-success me-1"></i> JAFZA Customs
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-light rounded-pill text-white-50 py-1 px-3 border-secondary" onclick="filterFaqTag('Human')">
+                        <i class="fa-solid fa-user-tie text-primary me-1"></i> Human + AI
+                    </button>
+                </div>
+
+                <!-- FAQ Accordion -->
+                <div class="accordion lotka-accordion" id="faqAccordion">
+                    <!-- Q1 -->
+                    <div class="accordion-item bg-dark border-secondary border-opacity-25 mb-2 rounded-3 overflow-hidden" data-tags="AED rates pricing quote">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button bg-transparent text-white fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fa-solid fa-coins text-danger me-2"></i> How are freight estimates calculated in UAE Dirhams (AED)?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-white-50 small pt-0 pb-3">
+                                LOTKA operates out of Dubai JAFZA One, anchoring all baseline quotations in UAE Dirhams (AED). Our autonomous AI pricing engine calculates spot rates utilizing live bunker fuel surcharges, container equipment availability indices, and Dubai customs processing fees. Because AED is pegged to USD at 3.6725, clients benefit from zero currency volatility.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="accordion-item bg-dark border-secondary border-opacity-25 mb-2 rounded-3 overflow-hidden" data-tags="Tracking satellite telemetry bl container">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed bg-transparent text-white fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="fa-solid fa-satellite-dish text-info me-2"></i> How does Real-Time AI Cargo Telemetry work?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-white-50 small pt-0 pb-3">
+                                Every container and air consignment is assigned to our neural telemetry network. We ingest AIS satellite vessel positions, aviation ADS-B feeds, and IoT smart container telemetry (temperature, vibration, seal integrity) updated every 15 minutes. Predictive machine learning models forecast customs arrival times to within 4 minutes.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="accordion-item bg-dark border-secondary border-opacity-25 mb-2 rounded-3 overflow-hidden" data-tags="Human AI coordinator operations desk">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed bg-transparent text-white fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <i class="fa-solid fa-user-tie text-primary me-2"></i> Can I speak directly to a Human Freight Coordinator?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-white-50 small pt-0 pb-3">
+                                Absolutely. The LOTKA philosophy is <em>People + AI</em>. While AI handles instant algorithmic quotes and telemetry, every customer shipment is actively overseen by a dedicated Senior Maritime/Air Freight Coordinator at our Dubai JAFZA operations center (Tel: +971 4 8818618).
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="accordion-item bg-dark border-secondary border-opacity-25 mb-2 rounded-3 overflow-hidden" data-tags="Customs jafza clearance port compliance">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed bg-transparent text-white fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <i class="fa-solid fa-passport text-success me-2"></i> What customs documentation and clearance are handled in JAFZA?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-white-50 small pt-0 pb-3">
+                                Our automated customs module connects directly to Dubai Customs Mirsal 2 and DP World Terminal systems. We process import, export, transit, and freezone transfer declarations with automated Harmonized System (HS) code verification, completing standard electronic clearance in under 12 minutes.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="accordion-item bg-dark border-secondary border-opacity-25 rounded-3 overflow-hidden" data-tags="Transit time ocean air multimodal schedule">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed bg-transparent text-white fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                <i class="fa-solid fa-clock text-warning me-2"></i> What are standard transit times for air and ocean freight?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-white-50 small pt-0 pb-3">
+                                Direct Air Freight from Dubai DXB/DWC operates on 2 to 4 business days transit globally. Ocean FCL shipments via Jebel Ali Port to European gateways (Rotterdam, Hamburg) average 14 to 22 business days, while intra-Gulf feeder runs (Jeddah, Dammam, Muscat) take 2 to 5 days.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer border-top border-secondary border-opacity-25 d-flex justify-content-between">
+                <span class="text-white-50 small"><i class="fa-solid fa-headset me-1 text-danger"></i> Need urgent booking? Call +971 4 8818618</span>
+                <button type="button" class="btn btn-lotka-red btn-sm px-4" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
