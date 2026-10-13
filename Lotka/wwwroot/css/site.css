@@ -259,6 +259,88 @@ body.lotka-dark-theme {
     display: none !important;
 }
 
+/* ══════════════════════════════════════════════
+   ABOUT US — Fully Visible Contain-Fit Hero
+   (Shows entire image without cropping on Desktop / Tablet / Mobile)
+   ══════════════════════════════════════════════ */
+.lotka-about-hero-section {
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    background-color: #0a2246;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex: 1 1 auto;
+}
+
+.about-hero-img-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.about-hero-img-full {
+    display: block;
+    /* contain: always show entire image, never crop */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    filter: contrast(1.04) saturate(1.06) brightness(1.02);
+    image-rendering: -webkit-optimize-contrast;
+    transition: filter 0.3s ease;
+}
+
+/* Desktop Large (≥1400px): image fills width, letterbox top/bottom if needed */
+@media (min-width: 1400px) {
+    .about-hero-img-full {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Desktop (≥992px): standard contain fit */
+@media (min-width: 992px) and (max-width: 1399.98px) {
+    .about-hero-img-full {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Tablet (768–991px): contain ensures full width visible */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .about-hero-img-full {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Mobile (< 768px): contain, width=100%, auto height so full image shows */
+@media (max-width: 767.98px) {
+    .lotka-about-hero-section {
+        height: auto;
+        min-height: calc(100vh - var(--header-h) - var(--dock-h));
+        align-items: flex-start;
+    }
+    .about-hero-img-wrapper {
+        height: auto;
+    }
+    .about-hero-img-full {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        max-height: none;
+    }
+}
+
 /* FAQ Page Specific Hero & Sharp Image Presentation */
 .lotka-faq-hero {
     position: relative;
