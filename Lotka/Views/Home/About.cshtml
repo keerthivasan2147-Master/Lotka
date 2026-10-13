@@ -2,14 +2,48 @@
     ViewData["Title"] = "About Us | Built on Experience. Driven by Innovation.";
 }
 
-<!-- ─── HERO: Full-Width About Us Banner — Fully Visible, Responsive Fit ─── -->
+<!-- ─── HERO: Full-Width About Us — Edge-to-Edge with Separate Content ─── -->
 <section class="lotka-about-hero-section">
-    <div class="about-hero-img-wrapper">
+    <!-- Background Image: Fills entire viewport width & height -->
+    <div class="fullwidth-image-wrapper">
         <img src="~/images/about-hero.png"
-             alt="LOTKA – Built on Experience. Driven by Innovation. Connecting today's opportunities to a better tomorrow."
-             class="about-hero-img-full" />
+             alt="LOTKA – Built on Experience. Driven by Innovation."
+             class="fullwidth-hero-img" />
     </div>
 
-    <!-- Visually hidden heading for SEO & Accessibility -->
+    <!-- Separate Content: Title floating at the top center -->
+    <div class="about-title-overlay">
+        <h2>Built on Experience. <span class="text-accent">Driven by Innovation.</span></h2>
+        <div class="about-subtitle">Connecting Today&rsquo;s Opportunities to a Better Tomorrow.</div>
+        <div class="about-subtitle-bar"></div>
+    </div>
+
+    <!-- Separate Content: PAST / NOW / FUTURE Timeline Bar at the bottom -->
+    <div class="about-bottom-bar">
+        <div class="about-timeline-row">
+            <!-- PAST -->
+            <div class="about-era-pill">
+                <div class="era-dot" style="background: #f59e0b; color: #f59e0b;"></div>
+                <div class="era-title">Past</div>
+                <div class="era-desc">Strong Roots<br>Real People<br>Global Experience</div>
+            </div>
+
+            <!-- NOW -->
+            <div class="about-era-pill">
+                <div class="era-dot" style="background: #3b82f6; color: #3b82f6;"></div>
+                <div class="era-title">Now</div>
+                <div class="era-desc">Integrated Solutions<br>Global Network<br>Customer Focus</div>
+            </div>
+
+            <!-- FUTURE -->
+            <div class="about-era-pill">
+                <div class="era-dot" style="background: #22c55e; color: #22c55e;"></div>
+                <div class="era-title">Future</div>
+                <div class="era-desc">AI Powered<br>Sustainable<br>A Better Tomorrow</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEO -->
     <h1 class="visually-hidden">Built on Experience. Driven by Innovation. Connecting today's opportunities to a better tomorrow.</h1>
 </section>

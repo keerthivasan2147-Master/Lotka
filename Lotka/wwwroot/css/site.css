@@ -260,85 +260,138 @@ body.lotka-dark-theme {
 }
 
 /* ══════════════════════════════════════════════
-   ABOUT US — Fully Visible Contain-Fit Hero
-   (Shows entire image without cropping on Desktop / Tablet / Mobile)
+   ABOUT US — Full-Width Edge-to-Edge (Same pattern as other pages)
    ══════════════════════════════════════════════ */
 .lotka-about-hero-section {
+    position: relative;
     width: 100%;
     height: 100%;
-    max-width: 100vw;
     background-color: #0a2246;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
     flex: 1 1 auto;
 }
-
-.about-hero-img-wrapper {
+.lotka-about-hero-section .fullwidth-image-wrapper {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
 }
-
-.about-hero-img-full {
-    display: block;
-    /* contain: always show entire image, never crop */
+.lotka-about-hero-section .fullwidth-hero-img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    object-position: center center;
+    display: block;
+    object-fit: cover;
+    object-position: center 65%;
     filter: contrast(1.04) saturate(1.06) brightness(1.02);
     image-rendering: -webkit-optimize-contrast;
-    transition: filter 0.3s ease;
 }
 
-/* Desktop Large (≥1400px): image fills width, letterbox top/bottom if needed */
-@media (min-width: 1400px) {
-    .about-hero-img-full {
-        object-fit: contain;
-        width: 100%;
-        height: 100%;
-    }
+/* About — Separate floating content at the bottom */
+.about-bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 15;
+    background: linear-gradient(0deg, rgba(4, 10, 22, 0.92) 0%, rgba(4, 10, 22, 0.6) 60%, transparent 100%);
+    padding: 2rem 3% 1.2rem;
+    pointer-events: none;
+}
+.about-bottom-bar * { pointer-events: auto; }
+
+.about-title-overlay {
+    position: absolute;
+    top: 6%;
+    left: 0;
+    right: 0;
+    z-index: 15;
+    text-align: center;
+    pointer-events: none;
+}
+.about-title-overlay h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 3px 16px rgba(0,0,0,0.85), 0 0 30px rgba(0,0,0,0.5);
+    margin: 0;
+    line-height: 1.2;
+}
+.about-title-overlay h2 .text-accent { color: #ef4444; }
+.about-title-overlay .about-subtitle {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-top: 6px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+}
+.about-subtitle-bar {
+    width: 40px;
+    height: 3px;
+    background: #dc2626;
+    margin: 8px auto 0;
+    border-radius: 2px;
 }
 
-/* Desktop (≥992px): standard contain fit */
-@media (min-width: 992px) and (max-width: 1399.98px) {
-    .about-hero-img-full {
-        object-fit: contain;
-        width: 100%;
-        height: 100%;
-    }
+/* About — Timeline pills at the very bottom */
+.about-timeline-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.about-era-pill {
+    text-align: center;
+    flex: 1;
+}
+.about-era-pill .era-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 4px;
+    box-shadow: 0 0 10px currentColor;
+}
+.about-era-pill .era-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.about-era-pill .era-desc {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
 }
 
-/* Tablet (768–991px): contain ensures full width visible */
+/* Tablet */
 @media (min-width: 768px) and (max-width: 991.98px) {
-    .about-hero-img-full {
-        object-fit: contain;
-        width: 100%;
-        height: 100%;
-    }
+    .about-title-overlay h2 { font-size: 1.7rem; }
+    .about-title-overlay .about-subtitle { font-size: 0.68rem; letter-spacing: 1.5px; }
+    .about-era-pill .era-title { font-size: 0.72rem; }
 }
 
-/* Mobile (< 768px): contain, width=100%, auto height so full image shows */
+/* Mobile */
 @media (max-width: 767.98px) {
-    .lotka-about-hero-section {
-        height: auto;
-        min-height: calc(100vh - var(--header-h) - var(--dock-h));
-        align-items: flex-start;
+    .lotka-about-hero-section .fullwidth-hero-img {
+        object-position: center center;
     }
-    .about-hero-img-wrapper {
-        height: auto;
-    }
-    .about-hero-img-full {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        max-height: none;
-    }
+    .about-title-overlay { top: 3%; }
+    .about-title-overlay h2 { font-size: 1.15rem; }
+    .about-title-overlay .about-subtitle { font-size: 0.58rem; letter-spacing: 1px; }
+    .about-subtitle-bar { width: 28px; height: 2px; margin-top: 4px; }
+    .about-bottom-bar { padding: 1.2rem 3% 0.7rem; }
+    .about-timeline-row { gap: 0.4rem; }
+    .about-era-pill .era-dot { width: 12px; height: 12px; }
+    .about-era-pill .era-title { font-size: 0.62rem; }
+    .about-era-pill .era-desc { font-size: 0.52rem; }
 }
 
 /* FAQ Page Specific Hero & Sharp Image Presentation */
