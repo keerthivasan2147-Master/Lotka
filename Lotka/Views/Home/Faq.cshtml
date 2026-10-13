@@ -2,29 +2,32 @@
     ViewData["Title"] = "FAQ | Questions on Freight, Tracking & AED Quotes";
 }
 
-<!-- ─── HERO: Full-Width AI Desk Banner for FAQ with Interactive AI Button & Separate Content ─── -->
-<section class="lotka-fullwidth-hero lotka-faq-hero position-relative">
+<!-- ─── HERO: Full-Width AI Desk Banner for FAQ — Same like Home page image size ─── -->
+<section class="lotka-fullwidth-hero position-relative">
     <div class="fullwidth-image-wrapper">
         <img src="~/images/faq-hero.png"
              alt="LOTKA FAQ – Smarter Questions, Brighter Answers"
-             class="faq-hero-img" />
+             class="fullwidth-hero-img" />
     </div>
 
     <!-- Visually hidden heading for SEO & Accessibility -->
     <h1 class="visually-hidden">Frequently Asked Questions – Smarter Questions, Brighter Answers</h1>
 
-    <!-- ── Interactive "AI" Buzzer Hotspot (Placed directly over the red desk buzzer) ── -->
-    <button type="button" 
-            class="faq-ai-buzzer-hotspot" 
-            id="faqAiBuzzerHotspot" 
-            data-bs-toggle="modal" 
-            data-bs-target="#lotkaAiFaqModal"
-            title="Press AI Button to Activate Intelligent FAQ"
-            aria-label="Activate LOTKA AI Assistant">
-        <span class="buzzer-text-hint">AI</span>
-    </button>
+    <!-- ── Separate Content: Left Side Title & Right Side Subtitle Overlay (Responsive) ── -->
+    <div class="faq-title-overlay">
+        <!-- Left side in Desktop -->
+        <div class="faq-title-left">
+            <h2>Built on Experience. <span class="text-accent">Smarter Question Brighter Answer</span></h2>
+        </div>
 
-    <!-- ── Interactive Action Bar with AI Button & Browse Questions ── -->
+        <!-- Right side in Desktop -->
+        <div class="faq-title-right">
+            <div class="about-subtitle">AI for Smarter Tomorrow</div>
+            <div class="about-subtitle-bar"></div>
+        </div>
+    </div>
+
+    <!-- ── Interactive Action Bar with AI Button ── -->
     <div class="faq-action-bar">
         <button type="button" 
                 class="btn btn-lotka-ai-buzzer" 
@@ -34,14 +37,6 @@
                 aria-label="Open AI Assistant">
             <span class="ai-dot-live"></span>
             <span><strong>AI</strong> — Ask Intelligent FAQ</span>
-        </button>
-        <button type="button" 
-                class="btn btn-outline-light rounded-pill px-3 py-2 fw-semibold d-none d-sm-inline-flex align-items-center gap-2" 
-                style="background: rgba(10, 24, 52, 0.75); backdrop-filter: blur(10px); border-color: rgba(255,255,255,0.25);"
-                data-bs-toggle="modal" 
-                data-bs-target="#lotkaAiFaqModal">
-            <i class="fa-solid fa-list-check text-info"></i>
-            <span>Browse Topics</span>
         </button>
     </div>
 </section>
