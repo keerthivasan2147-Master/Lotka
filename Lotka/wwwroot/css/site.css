@@ -267,68 +267,44 @@ body.lotka-dark-theme {
 }
 
 /* ══════════════════════════════════════════════
-   ABOUT US — Responsive Hero Display (Full uncropped image with bottom timeline)
+/* ══════════════════════════════════════════════
+   ABOUT US — Full-Width Edge-to-Edge Hero (Fill Viewport, Picture First)
    ══════════════════════════════════════════════ */
 .lotka-about-hero-section {
     position: relative;
     width: 100%;
     height: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
     background-color: #0a2246;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex: 1 1 auto;
 }
-.lotka-about-hero-section .about-hero-container,
-.lotka-about-hero-section .fullwidth-image-wrapper {
-    position: relative;
+.lotka-about-hero-section .fullwidth-image-wrapper,
+.lotka-about-hero-section .about-hero-container {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    max-height: calc(100vh - var(--header-h) - var(--dock-h));
-    max-width: calc((100vh - var(--header-h) - var(--dock-h)) * 1.7768);
-    aspect-ratio: 1672 / 941;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
 }
-.lotka-about-hero-section .about-hero-img,
-.lotka-about-hero-section .fullwidth-hero-img {
+.lotka-about-hero-section .fullwidth-hero-img,
+.lotka-about-hero-section .about-hero-img {
     width: 100%;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
+    height: 100%;
     display: block;
-    object-fit: contain;
-    object-position: center bottom;
+    object-fit: cover;
+    object-position: center 68%;
     filter: contrast(1.04) saturate(1.06) brightness(1.02);
     image-rendering: -webkit-optimize-contrast;
 }
 
-/* About — Separate floating content at the bottom */
-.about-bottom-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 15;
-    background: linear-gradient(0deg, rgba(4, 10, 22, 0.92) 0%, rgba(4, 10, 22, 0.6) 60%, transparent 100%);
-    padding: 2rem 3% 1.2rem;
-    pointer-events: none;
-}
-.about-bottom-bar * { pointer-events: auto; }
-
 .about-title-overlay {
     position: absolute;
-    top: 6%;
+    top: 3.5%;
     left: 0;
     right: 0;
     z-index: 15;
     text-align: center;
     pointer-events: none;
+    padding: 0 1rem;
 }
 .about-title-overlay h2 {
     font-family: var(--font-heading);
@@ -395,26 +371,25 @@ body.lotka-dark-theme {
 
 /* Tablet */
 @media (min-width: 768px) and (max-width: 991.98px) {
+    .lotka-about-hero-section .fullwidth-hero-img,
+    .lotka-about-hero-section .about-hero-img {
+        object-position: center 55%;
+    }
+    .about-title-overlay { top: 4%; }
     .about-title-overlay h2 { font-size: 1.7rem; }
     .about-title-overlay .about-subtitle { font-size: 0.68rem; letter-spacing: 1.5px; }
-    .about-era-pill .era-title { font-size: 0.72rem; }
 }
 
 /* Mobile */
 @media (max-width: 767.98px) {
-    .lotka-about-hero-section .about-hero-img,
-    .lotka-about-hero-section .fullwidth-hero-img {
-        object-position: center bottom;
+    .lotka-about-hero-section .fullwidth-hero-img,
+    .lotka-about-hero-section .about-hero-img {
+        object-position: center 65%;
     }
     .about-title-overlay { top: 3%; }
-    .about-title-overlay h2 { font-size: 1.15rem; }
-    .about-title-overlay .about-subtitle { font-size: 0.58rem; letter-spacing: 1px; }
+    .about-title-overlay h2 { font-size: 1.15rem; line-height: 1.25; }
+    .about-title-overlay .about-subtitle { font-size: 0.58rem; letter-spacing: 1px; margin-top: 3px; }
     .about-subtitle-bar { width: 28px; height: 2px; margin-top: 4px; }
-    .about-bottom-bar { padding: 1.2rem 3% 0.7rem; }
-    .about-timeline-row { gap: 0.4rem; }
-    .about-era-pill .era-dot { width: 12px; height: 12px; }
-    .about-era-pill .era-title { font-size: 0.62rem; }
-    .about-era-pill .era-desc { font-size: 0.52rem; }
 }
 
 /* ── FAQ AI Buzzer Hotspot (Over the Red Buzzer on Desk) ── */
