@@ -267,28 +267,43 @@ body.lotka-dark-theme {
 }
 
 /* ══════════════════════════════════════════════
-   ABOUT US — Full-Width Edge-to-Edge (Same pattern as other pages)
+   ABOUT US — Responsive Hero Display (Full uncropped image with bottom timeline)
    ══════════════════════════════════════════════ */
 .lotka-about-hero-section {
     position: relative;
     width: 100%;
     height: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
     background-color: #0a2246;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1 1 auto;
 }
+.lotka-about-hero-section .about-hero-container,
 .lotka-about-hero-section .fullwidth-image-wrapper {
-    position: absolute;
-    inset: 0;
+    position: relative;
     width: 100%;
     height: 100%;
+    max-height: calc(100vh - var(--header-h) - var(--dock-h));
+    max-width: calc((100vh - var(--header-h) - var(--dock-h)) * 1.7768);
+    aspect-ratio: 1672 / 941;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
+.lotka-about-hero-section .about-hero-img,
 .lotka-about-hero-section .fullwidth-hero-img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
     display: block;
-    object-fit: cover;
-    object-position: center 65%;
+    object-fit: contain;
+    object-position: center bottom;
     filter: contrast(1.04) saturate(1.06) brightness(1.02);
     image-rendering: -webkit-optimize-contrast;
 }
@@ -387,8 +402,9 @@ body.lotka-dark-theme {
 
 /* Mobile */
 @media (max-width: 767.98px) {
+    .lotka-about-hero-section .about-hero-img,
     .lotka-about-hero-section .fullwidth-hero-img {
-        object-position: center center;
+        object-position: center bottom;
     }
     .about-title-overlay { top: 3%; }
     .about-title-overlay h2 { font-size: 1.15rem; }
@@ -1005,4 +1021,225 @@ body.lotka-dark-theme {
     .faq-title-right .about-subtitle {
         font-size: 0.65rem;
     }
+}
+
+
+/* ==========================================
+   LOTKA WHY HERO
+   Responsive: Desktop, Tablet and Mobile
+   ========================================== */
+
+.lotka-why-hero {
+    width: 100%;
+    overflow: hidden;
+    background: #061a3a;
+    color: #fff;
+}
+
+.lotka-why-hero__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    width: 100%;
+    min-height: 520px;
+}
+
+/* Image column */
+.lotka-why-hero__image {
+    position: relative;
+    min-width: 0;
+    min-height: 520px;
+    overflow: hidden;
+}
+
+.lotka-why-hero__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Subtle blend between image and content */
+.lotka-why-hero__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        transparent 65%,
+        rgba(6, 26, 58, 0.45) 100%
+    );
+}
+
+/* Text column */
+.lotka-why-hero__content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+    padding: clamp(32px, 5vw, 80px);
+    background: #061a3a;
+}
+
+.lotka-why-hero__content .why-clarity-panel {
+    width: 100%;
+    max-width: 500px;
+}
+
+.lotka-why-hero__eyebrow {
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #c5d8ef;
+}
+
+.lotka-why-hero__content h1 {
+    margin: 0 0 24px;
+    max-width: 540px;
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 750;
+    line-height: 1.12;
+    letter-spacing: -0.8px;
+    overflow-wrap: break-word;
+}
+
+.lotka-why-hero__lead {
+    margin: 0 0 14px;
+    font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.lotka-why-hero__description {
+    max-width: 470px;
+    margin: 0;
+    color: #d0dbea;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* Large desktop */
+@media (min-width: 1440px) {
+    .lotka-why-hero__inner {
+        min-height: 620px;
+    }
+
+    .lotka-why-hero__image,
+    .lotka-why-hero__image img {
+        min-height: 620px;
+    }
+
+    .lotka-why-hero__content {
+        padding: 72px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .lotka-why-hero__inner {
+        grid-template-columns: 0.9fr 1.1fr;
+        min-height: 430px;
+    }
+
+    .lotka-why-hero__image,
+    .lotka-why-hero__image img {
+        min-height: 430px;
+    }
+
+    .lotka-why-hero__content {
+        padding: 28px;
+    }
+
+    .lotka-why-hero__content h1 {
+        font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+    }
+
+    .lotka-why-hero__description {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+    .lotka-why-hero__inner {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: auto;
+    }
+
+    .lotka-why-hero__image {
+        min-height: 0;
+        height: clamp(210px, 62vw, 340px);
+    }
+
+    .lotka-why-hero__image img {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .lotka-why-hero__image::after {
+        background: linear-gradient(
+            180deg,
+            transparent 65%,
+            rgba(6, 26, 58, 0.25) 100%
+        );
+    }
+
+    .lotka-why-hero__content {
+        padding: 28px 22px 36px;
+    }
+
+    .lotka-why-hero__content .why-clarity-panel {
+        max-width: 100%;
+    }
+
+    .lotka-why-hero__eyebrow {
+        margin-bottom: 12px;
+        font-size: 0.78rem;
+    }
+
+    .lotka-why-hero__content h1 {
+        max-width: 420px;
+        margin-bottom: 18px;
+        font-size: clamp(1.8rem, 7vw, 2.3rem);
+        line-height: 1.15;
+    }
+
+    .lotka-why-hero__lead {
+        font-size: 1.15rem;
+    }
+
+    .lotka-why-hero__description {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+    .lotka-why-hero__image {
+        height: 220px;
+    }
+
+    .lotka-why-hero__content {
+        padding: 24px 18px 30px;
+    }
+
+    .lotka-why-hero__content h1 {
+        font-size: 1.75rem;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .contact-hero-wrap { padding-right: 16px !important; }
+    .contact-skyline-panel { margin-left: auto; text-align: left; font-size: 16px !important; }
+    .contact-skyline-panel .company-title { font-size: 24px !important; }
 }
