@@ -1,4 +1,3 @@
-
 @{
     ViewData["Title"] = "FAQ | Questions on Freight, Tracking & AED Quotes";
 }
@@ -6,43 +5,50 @@
 <section class="lotka-fullwidth-hero lotka-faq-hero position-relative">
 
     <div class="fullwidth-image-wrapper">
-
         <img src="~/images/faq-hero.png"
              alt="LOTKA AI – Smarter Questions, Brighter Answers"
              class="fullwidth-hero-img faq-hero-img" />
 
-        <!-- Click only the AI button area, if present in the image -->
+        <!-- Existing AI hotspot -->
         <a href="@Url.Action("Quote", "Home")"
            class="faq-ai-hotspot"
            aria-label="Open AI Quote page"
            title="Open AI Quote">
         </a>
-
     </div>
 
     <h1 class="visually-hidden">
         Frequently Asked Questions – Smarter Questions, Brighter Answers
     </h1>
 
-    <!-- Left heading -->
+    <!-- LOTKA Hero Text Overlay -->
     <div class="faq-title-overlay">
 
+        <!-- Left: Logo and tagline -->
         <div class="faq-title-left">
-            <h2>
-                Built on Experience.
-                <span class="faq-title-accent">
-                    Smarter<br />
-                    Question Brighter Answer
-                </span>
-            </h2>
+
+            <img src="~/images/LOTKA_whiteLogo.png"
+                 alt="LOTKA"
+                 class="faq-white-logo" />
+
+            <div class="faq-tagline">
+                <span>Smarter Questions</span>
+                <span>Brighter Answers</span>
+            </div>
+
         </div>
 
-        <!-- Right subtitle -->
+        <!-- Right: AI message -->
         <div class="faq-title-right">
+
             <p class="faq-subtitle">
-                AI FOR SMARTER TOMORROW
+                AI FOR <br />
+                A SMARTER<br />
+                TOMORROW
             </p>
+
             <div class="faq-subtitle-bar"></div>
+
         </div>
 
     </div>

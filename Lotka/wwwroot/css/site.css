@@ -1272,7 +1272,7 @@ body.lotka-dark-theme {
 .lotka-fullwidth-hero .fullwidth-hero-img {
     display: block;
     width: 100%;
-    height: 100%;
+    height: 130%;
     max-width: none;
     object-fit: cover;
     filter: contrast(1.05) saturate(1.08) brightness(1.02);
@@ -1670,7 +1670,7 @@ body.lotka-dark-theme {
     border-radius: 2px;
 }
 
-.faq-ai-hotspot {
+/*.faq-ai-hotspot {
     position: absolute;
     left: 32%;
     top: 68%;
@@ -1682,7 +1682,118 @@ body.lotka-dark-theme {
     border-radius: 50%;
     cursor: pointer;
     text-decoration: none;
+}*/
+
+
+
+
+/* =========================================
+   FAQ AI HOTSPOT — RESPONSIVE POSITIONING
+   ========================================= */
+
+.lotka-faq-hero .fullwidth-image-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
+
+.lotka-faq-hero .faq-ai-hotspot {
+    position: absolute;
+    z-index: 50;
+    left: 32.5%;
+    top: 78%;
+    width: clamp(65px, 8vw, 130px);
+    height: clamp(55px, 8vw, 100px);
+    transform: translate(-50%, -50%);
+    display: block;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    text-decoration: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 1920 × 900 */
+@media (min-width: 1600px) {
+    .lotka-faq-hero .faq-ai-hotspot {
+        top: 78%;
+        width: clamp(65px, 8vw, 130px);
+        height: clamp(55px, 8vw, 100px);
+    }
+}
+
+/* 1366 × 768 and desktop / laptop */
+@media (min-width: 1200px) and (max-width: 1599.98px) {
+    .lotka-faq-hero .faq-ai-hotspot {
+        left: 32%;
+        top: 74%;
+        width: clamp(65px, 8vw, 130px);
+        height: clamp(55px, 8vw, 100px);
+    }
+}
+
+/* 1032 × 1376 — portrait tablet */
+@media (min-width: 1000px) and (max-width: 1199.98px) {
+    .lotka-faq-hero .faq-ai-hotspot {
+        left: 10%;
+        top: 71%;
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* 960 × 1440 — portrait tablet */
+@media (min-width: 900px) and (max-width: 999.98px) {
+    .lotka-faq-hero .faq-ai-hotspot {
+        left: 7%;
+        top: 71%;
+        width: 150px;
+        height: 130px;
+    }
+}
+
+/* Tablet: 768 × 1024 and similar landscape/tablet widths */
+@media (min-width: 768px) and (max-width: 899.98px) {
+    .lotka-faq-hero .faq-ai-hotspot {
+        left: 13%;
+        top: 71%;
+        width: 150px;
+        height: 130px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+    .lotka-faq-hero .faq-ai-hotspot {
+        left: 8%;
+        top: 70%;
+        width: 60px;
+        height: 55px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .lotka-faq-hero .faq-ai-hotspot {
+        left: 8%;
+        top: 70%;
+        width: 60px;
+        height: 55px;
+    }
+}
+
+/* Keyboard accessibility */
+.lotka-faq-hero .faq-ai-hotspot:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+
+
+
 
 .faq-ai-hotspot:focus-visible {
     outline: 3px solid #ffffff;
@@ -1779,24 +1890,17 @@ body.lotka-dark-theme {
     }
 }
 
-/* ==========================================================================
-   3. SERVICES PAGE — HEADER & MOBILE-ONLY OCEAN/AIR FREIGHT CONTENT
-   ========================================================================== */
-.lotka-services-hero {
-    position: relative;
-    height: 100%;
-    width: 100%;
-}
 
-/* Desktop & Tablet: Hide Services Header Overlay */
-@media (min-width: 768px) {
+
+/* Desktop: Hide Services Header Overlay */
+@media (min-width: 1200px) {
     .services-title-overlay {
         display: none !important;
     }
 }
 
-/* Services: Mobile / Phone (< 768px) */
-@media (max-width: 767.98px) {
+/* Mobile, Tablet & 1032 × 1376 Screens */
+@media (max-width: 1199.98px) {
     .services-hero-img {
         object-position: center center;
     }
@@ -1815,7 +1919,7 @@ body.lotka-dark-theme {
 
     .services-phone-header {
         font-family: var(--font-heading);
-        font-size: 1.15rem; /* Same as About Us Header Font size on phone */
+        font-size: clamp(1.15rem, 2.5vw, 1.6rem);
         font-weight: 800;
         color: #ffffff;
         text-transform: uppercase;
@@ -1829,11 +1933,13 @@ body.lotka-dark-theme {
         width: 32px;
         height: 3px;
         background: #dc2626;
-        margin: 6px 0 0 0;
+        margin: 6px 0 0;
         border-radius: 2px;
         box-shadow: 0 0 8px rgba(220, 38, 38, 0.6);
     }
 }
+
+
 
 /* ==========================================================================
    4. WHY LOTKA — HEADER & PARAGRAPH FONT (Same like About Us Page)
@@ -2168,5 +2274,314 @@ body.lotka-dark-theme {
         padding: 0.65rem 1.6rem;
     }
 }
+
+
+
+
+
+/* =========================================================
+   LOTKA FAQ HERO — LOGO & CONTENT ALIGNMENT
+   ========================================================= */
+
+.lotka-faq-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+    .lotka-faq-hero .faq-title-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 15;
+        pointer-events: none;
+    }
+
+    /* LEFT CONTENT — LOGO + TAGLINE */
+    .lotka-faq-hero .faq-title-left {
+        position: absolute;
+        left: 15.5%;
+        top: 32%;
+        width: 30%;
+        max-width: 340px;
+        text-align: left;
+    }
+
+    /* Separate white LOTKA logo */
+    .lotka-faq-hero .faq-white-logo {
+        display: block;
+        width: clamp(140px, 15vw, 205px);
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin: 0 0 8px;
+    }
+
+    /* Smarter Questions / Brighter Answers */
+    .lotka-faq-hero .faq-tagline {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0;
+        padding: 0;
+        gap: 0;
+        color: #ef4444;
+        font-family: var(--font-heading), sans-serif;
+        font-size: clamp(15px, 1.6vw, 22px);
+        font-weight: 1000;
+        line-height: 1.35;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+    }
+
+    /* RIGHT CONTENT — AI MESSAGE */
+    .lotka-faq-hero .faq-title-right {
+        position: absolute;
+        left: 73.5%;
+        top: 32%;
+        width: 22%;
+        max-width: 280px;
+        text-align: left;
+    }
+
+    .lotka-faq-hero .faq-subtitle {
+        margin: 0;
+        padding: 0;
+        color: #ef4444;
+        font-family: var(--font-heading), sans-serif;
+        font-size: clamp(15px, 1.6vw, 22px);
+        font-weight: 1000;
+        line-height: 1.4;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+    }
+
+    /* Blue underline */
+    .lotka-faq-hero .faq-subtitle-bar {
+        width: 35px;
+        height: 3px;
+        margin-top: 10px;
+        background: #65b9ff;
+        border-radius: 1px;
+    }
+
+/* =========================================================
+   TABLET — INCLUDING 768px AND 1032px WIDTHS
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+
+    .lotka-faq-hero .faq-title-left {
+        left: 15.5%;
+        top: 32%;
+        width: 30%;
+        max-width: 270px;
+    }
+
+    .lotka-faq-hero .faq-white-logo {
+        width: clamp(125px, 15vw, 170px);
+    }
+
+    .lotka-faq-hero .faq-tagline {
+        font-size: clamp(13px, 1.7vw, 18px);
+    }
+
+    .lotka-faq-hero .faq-title-right {
+        left: 73.5%;
+        top: 32%;
+        width: 23%;
+    }
+
+    .lotka-faq-hero .faq-subtitle {
+        font-size: clamp(13px, 1.7vw, 18px);
+    }
+
+    .lotka-faq-hero .faq-subtitle-bar {
+        width: 30px;
+        height: 2px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+
+    .lotka-faq-hero .faq-title-left {
+        left: 8%;
+        top: 25%;
+        width: 44%;
+        max-width: 180px;
+    }
+
+    .lotka-faq-hero .faq-white-logo {
+        width: clamp(100px, 28vw, 135px);
+        margin-bottom: 6px;
+    }
+
+    .lotka-faq-hero .faq-tagline {
+        font-size: clamp(10px, 2.8vw, 14px);
+        line-height: 1.35;
+    }
+
+    .lotka-faq-hero .faq-title-right {
+        left: 73%;
+        top: 25%;
+        width: 25%;
+    }
+
+    .lotka-faq-hero .faq-subtitle {
+        font-size: clamp(10px, 2.7vw, 14px);
+        line-height: 1.4;
+    }
+
+    .lotka-faq-hero .faq-subtitle-bar {
+        width: 25px;
+        height: 2px;
+        margin-top: 6px;
+    }
+}
+
+
+
+
+
+/* =========================================================
+   STAFF LOGIN — ZOOM OUT & FIX TOP LOGO VISIBILITY
+   ========================================================= */
+
+/* Main login section */
+.staff-login-page-section {
+    min-height: calc(100vh - 110px);
+    padding: 35px 15px 25px !important;
+    align-items: center;
+}
+
+    /* Login content container */
+    .staff-login-page-section > .container {
+        max-width: 100%;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+    }
+
+    /* Brand logo wrapper — prevent clipping */
+    .staff-login-page-section .staff-logo-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+        margin-top: 10px;
+        margin-bottom: 8px !important;
+    }
+
+    /* Inside-page LOTKA logo */
+    .staff-login-page-section .staff-logo-img {
+        display: block;
+        width: 115px;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Brand tagline */
+    .staff-login-page-section .staff-brand-tagline {
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: 1px;
+        margin-bottom: 18px;
+    }
+
+    /* Login card — slightly more compact */
+    .staff-login-page-section .staff-glass-card {
+        max-width: 540px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 26px 30px !important;
+    }
+
+        /* Heading */
+        .staff-login-page-section .staff-glass-card h2 {
+            font-size: 25px;
+            margin-bottom: 20px !important;
+        }
+
+    /* Inputs */
+    .staff-login-page-section .staff-input-group .form-control,
+    .staff-login-page-section .staff-input-group .input-group-text,
+    .staff-login-page-section .staff-input-group .btn {
+        min-height: 48px;
+        font-size: 15px;
+    }
+
+    /* Login button */
+    .staff-login-page-section .btn-lotka-gold {
+        min-height: 50px;
+        padding: 10px 15px !important;
+        font-size: 17px;
+    }
+
+    /* Return link */
+    .staff-login-page-section .text-center.mt-4 {
+        margin-top: 18px !important;
+    }
+
+/* =========================================================
+   TABLET & MOBILE
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+    .staff-login-page-section {
+        min-height: auto;
+        padding: 25px 12px !important;
+    }
+
+        .staff-login-page-section .staff-logo-img {
+            width: 100px;
+        }
+
+        .staff-login-page-section .staff-brand-tagline {
+            font-size: 10px;
+            margin-bottom: 14px;
+        }
+
+        .staff-login-page-section .staff-glass-card {
+            padding: 22px 18px !important;
+        }
+
+            .staff-login-page-section .staff-glass-card h2 {
+                font-size: 22px;
+            }
+}
+
+
+
+
+
+
+
+
+/* Remove spacing around the Services hero */
+.lotka-fullwidth-hero.lotka-services-hero {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.lotka-services-hero .fullwidth-image-wrapper {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Keep the phone heading positioned over the image */
+.lotka-services-hero .services-title-overlay {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    z-index: 2;
+    max-width: 90%;
+}
+
+
+
+
 
 
