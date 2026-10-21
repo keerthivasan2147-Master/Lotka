@@ -553,7 +553,7 @@ body.lotka-dark-theme {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: clamp(70px, 9vw, 150px);
     z-index: 30;
     pointer-events: auto;
 }
@@ -705,13 +705,6 @@ body.lotka-dark-theme {
 .min-vh-hero { min-height: 540px; display: flex; align-items: center; }
 .min-vh-50   { min-height: 340px; display: flex; align-items: center; }
 
-/* Eyebrow */
-.hero-eyebrow-tag { display: flex; align-items: center; gap: .7rem; }
-.eyebrow-accent-bar { display: inline-block; width: 30px; height: 3px; background: var(--lotka-red); }
-.eyebrow-caption { font-size: .8rem; font-weight: 700; letter-spacing: 2px; color: #fff; }
-
-.hero-main-title { font-weight: 800; line-height: 1.1; }
-
 /* ── Metrics Strip ── */
 .fullwidth-metrics-strip { background: var(--lotka-navy-alt); }
 .metric-num { line-height: 1; }
@@ -848,19 +841,8 @@ body.lotka-dark-theme {
     }
 }
 
-/* Large desktops (≥1400px) */
-@media (min-width: 1400px) {
-    .hero-main-title { font-size: 3.8rem; }
-}
-
-/* Standard desktop (≥1200px) */
-@media (min-width: 1200px) {
-    .hero-main-title { font-size: 3.4rem; }
-}
-
 /* Desktop to tablet boundary (992–1199px) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    .hero-main-title { font-size: 2.8rem; }
     .lotka-nav-list .nav-link { padding: .45rem .65rem !important; font-size: .85rem; }
     .about-heritage-card, .about-ai-card { max-width: 320px; padding: 1.1rem 1.2rem; }
 }
@@ -868,7 +850,6 @@ body.lotka-dark-theme {
 /* Tablet (768–991px) */
 @media (min-width: 768px) and (max-width: 991.98px) {
     :root { --header-h: 64px; --dock-h: 56px; --drawer-w: 320px; }
-    .hero-main-title { font-size: 2.3rem; }
     .benefit-badge { font-size: 1.15rem; }
     .contact-skyline-panel { font-size: 0.85rem; }
     .hero-content-overlay, .feature-content-overlay { padding-top: 3.5rem; padding-bottom: 2rem; }
@@ -914,7 +895,6 @@ body.lotka-dark-theme {
     :root { --header-h: 60px; --dock-h: 54px; --drawer-w: 82vw; }
 
     .brand-logo-img { height: 26px; }
-    .hero-main-title { font-size: 1.85rem; line-height: 1.2; }
     .hero-content-overlay, .feature-content-overlay { padding-top: 2rem; padding-bottom: 1.5rem; }
 
     .faq-ai-buzzer-hotspot {
@@ -1019,8 +999,6 @@ body.lotka-dark-theme {
 
 /* Extra small (< 480px) */
 @media (max-width: 480px) {
-    .hero-main-title { font-size: 1.6rem; }
-    .eyebrow-caption { font-size: .68rem; }
     .btn-quote-choice {
         font-size: 0.76rem;
         padding: 7px 12px;
@@ -1254,54 +1232,9 @@ body.lotka-dark-theme {
 }
 
 
-@media (min-width: 992px) {
-    .contact-hero-wrap { padding-right: 16px !important; }
-    .contact-skyline-panel { margin-left: auto; text-align: left; font-size: 16px !important; }
-    .contact-skyline-panel .company-title { font-size: 24px !important; }
-}
-
-
-
-/* Services page — Desktop and larger screens only */
-@media (min-width: 1025px) {
-    .lotka-fullwidth-hero .fullwidth-image-wrapper {
-        overflow: hidden;
-        width: 100%;
-    }
-
-    .lotka-fullwidth-hero .fullwidth-hero-img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 35%;
-        transform: none;
-    }
-}
-
-
-/* Services page — Desktop and larger screens only */
-/*@media (min-width: 1025px) {
-    .lotka-fullwidth-hero .fullwidth-image-wrapper {
-        overflow: hidden;
-        width: 100%;
-    }
-
-    .lotka-fullwidth-hero .fullwidth-hero-img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 35%;*/
-        /* CHANGED: remove previous width compensation */
-        /*max-width: 100%;
-        margin-left: 0;
-        transform: scale(0.9);
-        transform-origin: center center;
-    }
-}*/
-
-
+/* ==========================================================================
+   STAFF PORTAL LOGO
+   ========================================================================== */
 .staff-logo-img {
     display: block;
     width: 110px;
@@ -1311,19 +1244,929 @@ body.lotka-dark-theme {
     object-fit: contain;
 }
 
+/* ==========================================================================
+   FULL-WIDTH HERO SECTIONS (Contact, FAQ, Services, Why Lotka)
+   Edge-to-Edge Responsive Image Framing
+   ========================================================================== */
+.lotka-fullwidth-hero {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0a2246;
+    flex: 1 1 auto;
+}
+
+.lotka-fullwidth-hero .fullwidth-image-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.lotka-fullwidth-hero .fullwidth-hero-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    filter: contrast(1.05) saturate(1.08) brightness(1.02);
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* Specific Page Image Alignments */
+.contact-hero-img {
+    object-position: center 30%;
+}
+
+.faq-hero-img {
+    object-position: center center;
+}
+
+.services-hero-img {
+    object-position: center 35%;
+}
+
+.why-hero-img {
+    object-position: center center;
+}
+
+/* ==========================================================================
+   1. CONTACT US — RESPONSIVE (Mobile, Tablet, Desktop, Higher Desktop)
+   ========================================================================== */
+.lotka-contact-hero {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.contact-hero-container {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 2rem;
+    pointer-events: none;
+    width: 100%;
+}
+
+.contact-panel-wrapper {
+    pointer-events: auto;
+    width: 100%;
+}
+
+.contact-skyline-panel {
+    line-height: 1.85;
+    transition: all 0.25s ease;
+}
+
+.contact-skyline-panel .company-title {
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
+}
+
+.contact-address-line {
+    font-family: var(--font-body);
+}
+
+.contact-comm-line {
+    font-family: var(--font-body);
+}
+
+.contact-link {
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+/* Contact: Mobile (< 768px) — Dead Center & Blue Color */
+@media (max-width: 767.98px) {
+    .contact-hero-img {
+        object-position: center 65%;
+    }
+
+    .contact-hero-container {
+        padding-top: 1.25rem;
+        padding-left: 0;
+        padding-right: 0;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .contact-panel-wrapper {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-skyline-panel {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        color: #031a4a !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+    contact-skyline-panel .company-title
+
+    .contact-skyline-panel .company-title {
+        font-size: 1.25rem;
+        font-weight: 900;
+        color: #031a4a !important;
+        margin-bottom: 6px;
+        text-align: center !important;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.85);
+        width: 100%;
+    }
+
+    .contact-address-line {
+        font-size: 0.82rem;
+        color: #031a4a !important;
+        font-weight: 800;
+        line-height: 1.45;
+        text-align: center !important;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+        width: 100%;
+    }
+
+    .contact-comm-line {
+        font-size: 0.85rem;
+        color: #031a4a !important;
+        font-weight: 800;
+        margin-top: 4px;
+        text-align: center !important;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+        width: 100%;
+    }
+
+    .contact-link {
+        color: #031a4a !important;
+        font-weight: 800;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+    }
+
+    .contact-link:hover {
+        color: #dc2626 !important;
+    }
+
+    .contact-icon {
+        color: #dc2626;
+        margin-right: 4px;
+    }
+}
+
+/* Contact: Tablet (768px - 991.98px) — Right side, Blue color, Clear */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .contact-hero-img {
+        object-position: center 30%;
+    }
+
+    .contact-hero-container {
+        padding-top: 1.5rem;
+    }
+
+    .contact-skyline-panel {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0;
+        color: #031a4a !important;
+        text-align: left;
+        max-width: 290px;
+        margin-left: auto;
+        margin-right: 1.5rem;
+        margin-top: 1.5rem;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .contact-skyline-panel .company-title {
+        font-size: 20px;
+        font-weight: 900;
+        color: #031a4a !important;
+        margin-bottom: 6px;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+    }
+
+    .contact-address-line {
+        font-size: 14px;
+        color: #031a4a !important;
+        font-weight: 800;
+        line-height: 1.5;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+    }
+
+    .contact-comm-line {
+        font-size: 14px;
+        color: #031a4a !important;
+        font-weight: 800;
+        margin-top: 4px;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+    }
+
+    .contact-link {
+        color: #031a4a !important;
+        font-weight: 800;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+    }
+
+    .contact-link:hover {
+        color: #dc2626 !important;
+    }
+}
+
+/* Contact: Desktop (992px - 1439.98px) — Right side in open sky, Blue color, Clear */
+@media (min-width: 992px) and (max-width: 1439.98px) {
+    .contact-skyline-panel {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: #031a4a !important;
+        padding: 0;
+        line-height: 1.75;
+        font-weight: 800;
+        font-size: 15px;
+        text-align: left;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: 1.5rem;
+        margin-top: 2rem;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .contact-skyline-panel .company-title {
+        font-size: 20px;
+        font-weight: 900;
+        color: #031a4a !important;
+        margin-bottom: 8px;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.75);
+    }
+
+    .contact-address-line {
+        color: #031a4a !important;
+        font-size: 15px;
+        font-weight: 800;
+        line-height: 1.65;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.75);
+    }
+
+    .contact-comm-line {
+        color: #031a4a !important;
+        font-size: 15px;
+        font-weight: 800;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.75);
+    }
+
+    .contact-link {
+        color: #031a4a !important;
+        font-weight: 800;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.75);
+    }
+
+    .contact-link:hover {
+        color: #dc2626 !important;
+    }
+}
+
+/* Contact: Higher Desktop (>= 1440px / 1920px / 4K) — Right side, Blue color, Clear */
+@media (min-width: 1440px) {
+    .contact-skyline-panel {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: #031a4a !important;
+        font-size: clamp(15px, 0.95vw, 18px);
+        line-height: 1.8;
+        font-weight: 800;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: clamp(2rem, 3.5vw, 4rem);
+        margin-top: clamp(2rem, 3vw, 4rem);
+        text-align: left;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .contact-skyline-panel .company-title {
+        font-size: 20px;
+        font-weight: 900;
+        color: #031a4a !important;
+        margin-bottom: 10px;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.75);
+    }
+
+    .contact-address-line {
+        color: #031a4a !important;
+        font-size: inherit;
+        font-weight: 800;
+        line-height: 1.75;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.75);
+    }
+
+    .contact-comm-line {
+        color: #031a4a !important;
+        font-size: inherit;
+        font-weight: 800;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.75);
+    }
+
+    .contact-link {
+        color: #031a4a !important;
+        font-weight: 800;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.75);
+    }
+
+    .contact-link:hover {
+        color: #dc2626 !important;
+    }
+}
 
 
+/* ==========================================================================
+   2. FAQ HERO & OVERLAY (Styled Same Like About Us Page)
+   ========================================================================== */
+.faq-title-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 28px 4.1%;
+    gap: 24px;
+    pointer-events: none;
+}
 
+.faq-title-left {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 55%;
+    pointer-events: auto;
+}
 
+.faq-title-left h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0;
+    text-shadow: 0 3px 16px rgba(0,0,0,0.85), 0 0 30px rgba(0,0,0,0.5);
+}
 
+.faq-title-accent {
+    color: #ef4444;
+    font-weight: 800;
+}
 
+.faq-title-right {
+    flex: 0 0 auto;
+    text-align: right;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
 
+.faq-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+}
 
+.faq-subtitle-bar {
+    width: 40px;
+    height: 3px;
+    background-color: #dc2626;
+    margin: 6px 0 0 auto;
+    border-radius: 2px;
+}
 
+.faq-ai-hotspot {
+    position: absolute;
+    left: 32%;
+    top: 68%;
+    width: 11%;
+    height: 13%;
+    z-index: 5;
+    display: block;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    text-decoration: none;
+}
 
+.faq-ai-hotspot:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+}
 
+/* FAQ: Mobile (< 768px) */
+@media (max-width: 767.98px) {
+    .faq-hero-img {
+        object-position: center 55%;
+    }
 
+    .faq-title-overlay {
+        top: 2%;
+        padding: 10px 4%;
+        gap: 8px;
+    }
 
+    .faq-title-left {
+        max-width: 60%;
+    }
 
+    .faq-title-left h2 {
+        font-size: 1.15rem;
+        line-height: 1.25;
+    }
+
+    .faq-title-right {
+        max-width: 40%;
+    }
+
+    .faq-subtitle {
+        font-size: 0.58rem;
+        letter-spacing: 1px;
+        margin-top: 3px;
+    }
+
+    .faq-subtitle-bar {
+        width: 28px;
+        height: 2px;
+        margin-top: 4px;
+    }
+}
+
+/* FAQ: Tablet (768px - 991.98px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .faq-title-overlay {
+        top: 3.5%;
+        padding: 20px 4%;
+        gap: 16px;
+    }
+
+    .faq-title-left {
+        max-width: 58%;
+    }
+
+    .faq-title-left h2 {
+        font-size: 1.7rem;
+        line-height: 1.2;
+    }
+
+    .faq-subtitle {
+        font-size: 0.68rem;
+        letter-spacing: 1.5px;
+    }
+
+    .faq-subtitle-bar {
+        width: 36px;
+        height: 3px;
+    }
+}
+
+/* FAQ: Higher Desktop (>= 1440px / 1920px / 4K) */
+@media (min-width: 1440px) {
+    .faq-title-overlay {
+        top: 4%;
+        padding: 36px 5%;
+        gap: 32px;
+    }
+
+    .faq-title-left h2 {
+        font-size: clamp(2.4rem, 2.2vw, 3rem);
+        line-height: 1.2;
+    }
+
+    .faq-subtitle {
+        font-size: clamp(0.85rem, 0.8vw, 1.1rem);
+        letter-spacing: 3px;
+    }
+
+    .faq-subtitle-bar {
+        width: 48px;
+        height: 3.5px;
+    }
+}
+
+/* ==========================================================================
+   3. SERVICES PAGE — HEADER & MOBILE-ONLY OCEAN/AIR FREIGHT CONTENT
+   ========================================================================== */
+.lotka-services-hero {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/* Desktop & Tablet: Hide Services Header Overlay */
+@media (min-width: 768px) {
+    .services-title-overlay {
+        display: none !important;
+    }
+}
+
+/* Services: Mobile / Phone (< 768px) */
+@media (max-width: 767.98px) {
+    .services-hero-img {
+        object-position: center center;
+    }
+
+    .services-title-overlay {
+        position: absolute;
+        top: 3.5%;
+        left: 4.5%;
+        right: auto;
+        z-index: 15;
+        text-align: left;
+        pointer-events: none;
+        padding: 0;
+        display: block !important;
+    }
+
+    .services-phone-header {
+        font-family: var(--font-heading);
+        font-size: 1.15rem; /* Same as About Us Header Font size on phone */
+        font-weight: 800;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        line-height: 1.25;
+        text-shadow: 0 3px 16px rgba(0, 0, 0, 0.85), 0 0 30px rgba(0, 0, 0, 0.5);
+        margin: 0;
+    }
+
+    .services-phone-bar {
+        width: 32px;
+        height: 3px;
+        background: #dc2626;
+        margin: 6px 0 0 0;
+        border-radius: 2px;
+        box-shadow: 0 0 8px rgba(220, 38, 38, 0.6);
+    }
+}
+
+/* ==========================================================================
+   4. WHY LOTKA — HEADER & PARAGRAPH FONT (Same like About Us Page)
+   ========================================================================== */
+.why-hero {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.why-clarity-panel {
+    max-width: 580px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.why-main-title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0 0 0.75rem 0;
+    text-shadow: 0 3px 16px rgba(0,0,0,0.85), 0 0 30px rgba(0,0,0,0.5);
+}
+
+.why-main-title .text-accent {
+    color: #ef4444;
+    font-weight: 800;
+}
+
+.why-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+}
+
+.why-subtitle-bar {
+    width: 40px;
+    height: 3px;
+    background: #dc2626;
+    border-radius: 2px;
+    margin-bottom: 12px;
+}
+
+.why-lead {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    margin-bottom: 0.4rem;
+}
+
+.why-desc {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    max-width: 540px;
+}
+
+/* Why Lotka: Mobile (< 768px) */
+@media (max-width: 767.98px) {
+    .why-hero-img {
+        object-position: 70% center;
+    }
+
+    .why-clarity-panel {
+        max-width: 95%;
+    }
+
+    .why-main-title {
+        font-size: 1.15rem;
+        line-height: 1.25;
+        margin-bottom: 0.5rem;
+    }
+
+    .why-subtitle {
+        font-size: 0.58rem;
+        letter-spacing: 1px;
+        margin-top: 3px;
+    }
+
+    .why-subtitle-bar {
+        width: 28px;
+        height: 2px;
+        margin-bottom: 8px;
+    }
+
+    .why-lead {
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+
+    .why-desc {
+        font-size: 0.68rem;
+        line-height: 1.45;
+    }
+}
+
+/* Why Lotka: Tablet (768px - 991.98px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .why-main-title {
+        font-size: 1.7rem;
+        line-height: 1.2;
+    }
+
+    .why-subtitle {
+        font-size: 0.68rem;
+        letter-spacing: 1.5px;
+    }
+
+    .why-subtitle-bar {
+        width: 36px;
+        height: 3px;
+    }
+
+    .why-lead {
+        font-size: 1rem;
+    }
+
+    .why-desc {
+        font-size: 0.85rem;
+    }
+}
+
+/* Why Lotka: Higher Desktop (>= 1440px / 1920px / 4K) */
+@media (min-width: 1440px) {
+    .why-main-title {
+        font-size: clamp(2.4rem, 2.2vw, 3rem);
+        line-height: 1.2;
+    }
+
+    .why-subtitle {
+        font-size: clamp(0.85rem, 0.8vw, 1.1rem);
+        letter-spacing: 3px;
+    }
+
+    .why-subtitle-bar {
+        width: 48px;
+        height: 3.5px;
+    }
+
+    .why-lead {
+        font-size: clamp(1.2rem, 1.1vw, 1.45rem);
+    }
+
+    .why-desc {
+        font-size: clamp(1rem, 0.9vw, 1.15rem);
+    }
+}
+
+/* ==========================================================================
+   5. HOME PAGE — HERO TYPOGRAPHY & RESPONSIVE (Same like About Us Page)
+   ========================================================================== */
+.home-hero-content {
+    max-width: 620px;
+}
+
+.hero-eyebrow-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.eyebrow-accent-bar {
+    display: inline-block;
+    width: 40px;
+    height: 3px;
+    background-color: #dc2626;
+    border-radius: 2px;
+}
+
+.eyebrow-caption {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.hero-main-title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0 0 0.85rem 0;
+    text-shadow: 0 3px 16px rgba(0, 0, 0, 0.85), 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.hero-main-title .text-accent {
+    color: #ef4444;
+    font-weight: 800;
+}
+
+.hero-home-lead {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.5;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    margin-bottom: 1.5rem;
+    max-width: 540px;
+}
+
+.btn-home-hero {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.55rem 1.4rem;
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+    transition: all 0.25s ease;
+}
+
+/* Home: Mobile (< 768px) */
+@media (max-width: 767.98px) {
+    .home-hero-content {
+        max-width: 95%;
+    }
+
+    .hero-eyebrow-tag {
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .eyebrow-accent-bar {
+        width: 28px;
+        height: 2px;
+    }
+
+    .eyebrow-caption {
+        font-size: 0.58rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-main-title {
+        font-size: 1.15rem !important;
+        line-height: 1.25 !important;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-home-lead {
+        font-size: 0.8rem;
+        font-weight: 700;
+        line-height: 1.45;
+        margin-bottom: 1rem;
+    }
+
+    .btn-home-hero {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.9rem;
+    }
+}
+
+/* Home: Tablet (768px - 991.98px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .home-hero-content {
+        max-width: 520px;
+    }
+
+    .eyebrow-accent-bar {
+        width: 36px;
+        height: 3px;
+    }
+
+    .eyebrow-caption {
+        font-size: 0.68rem;
+        letter-spacing: 1.5px;
+    }
+
+    .hero-main-title {
+        font-size: 1.7rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.65rem;
+    }
+
+    .hero-home-lead {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 1.25rem;
+    }
+
+    .btn-home-hero {
+        font-size: 0.88rem;
+        padding: 0.5rem 1.2rem;
+    }
+}
+
+/* Home: Higher Desktop (>= 1440px / 1920px / 4K) */
+@media (min-width: 1440px) {
+    .home-hero-content {
+        max-width: 680px;
+    }
+
+    .eyebrow-accent-bar {
+        width: 48px;
+        height: 3.5px;
+    }
+
+    .eyebrow-caption {
+        font-size: clamp(0.85rem, 0.8vw, 1.1rem);
+        letter-spacing: 3px;
+    }
+
+    .hero-main-title {
+        font-size: clamp(2.4rem, 2.2vw, 3rem) !important;
+        line-height: 1.2 !important;
+        margin-bottom: 1rem;
+    }
+
+    .hero-home-lead {
+        font-size: clamp(1.2rem, 1.1vw, 1.45rem);
+        max-width: 620px;
+        margin-bottom: 1.75rem;
+    }
+
+    .btn-home-hero {
+        font-size: 1.05rem;
+        padding: 0.65rem 1.6rem;
+    }
+}
 
 
