@@ -925,7 +925,7 @@ body.lotka-dark-theme {
     }
     .faq-action-bar,
     .quote-action-bar {
-        bottom: 12px;
+        bottom: 100px;
         gap: 8px;
         width: 94%;
         justify-content: center;
@@ -1259,3 +1259,8 @@ body.lotka-dark-theme {
     .contact-skyline-panel { margin-left: auto; text-align: left; font-size: 16px !important; }
     .contact-skyline-panel .company-title { font-size: 24px !important; }
 }
+
+
+
+
+
