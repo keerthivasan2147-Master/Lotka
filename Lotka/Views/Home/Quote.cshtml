@@ -40,7 +40,8 @@
                 class="btn btn-quote-choice btn-quote-human" 
                 id="btnQuoteHuman" 
                 data-bs-toggle="modal" 
-                data-bs-target="#humanQuoteModal">
+                @* data-bs-target="#humanQuoteModal" *@
+        >
             <i class="fa-solid fa-user-tie text-info fs-5"></i>
             <div class="text-start">
                 <div class="fw-bold lh-1">Human Quote</div>
@@ -53,17 +54,18 @@
                 class="btn btn-quote-choice btn-quote-ai" 
                 id="btnQuoteAi" 
                 data-bs-toggle="modal" 
-                data-bs-target="#aiQuoteModal">
+                @* data-bs-target="#aiQuoteModal" *@
+        >
             <i class="fa-solid fa-robot text-danger fs-5"></i>
             <div class="text-start">
                 <div class="fw-bold lh-1">AI Quote</div>
-                <small class="opacity-75 text-white" style="font-size: 0.72rem;">Instant AED Estimator</small>
+                <small class="opacity-75 text-white" style="font-size: 0.72rem;">Instant Estimator</small>
             </div>
         </button>
     </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════
+@* <!-- ══════════════════════════════════════════════════════════════
      MODAL 1: HUMAN LOGISTICS SPECIALIST QUOTE
      ══════════════════════════════════════════════════════════════ -->
 <div class="modal fade lotka-modal" id="humanQuoteModal" tabindex="-1" aria-labelledby="humanModalTitle" aria-hidden="true">
@@ -158,7 +160,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> *@
 
 <!-- ══════════════════════════════════════════════════════════════
      MODAL 2: AUTONOMOUS AI INSTANT FREIGHT ESTIMATOR (AED)
