@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <!-- Site CSS with Media Queries -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+   @*  <!-- LOTKA AI Assistant Widget CSS -->
+     @* <link rel="stylesheet" href="~/css/assistant.css" asp-append-version="true" /> *@
 </head>
 <body class="lotka-dark-theme">
     <!-- Top SPA Progress Loading Bar -->
@@ -106,9 +108,9 @@
                 <a href="/Home/Quote" class="btn btn-lotka-red w-100 spa-link mb-2" data-page="Quote">
                     <i class="fa-solid fa-calculator me-1"></i> Get a Quote
                 </a>
-                <button type="button" class="btn btn-dark w-100 text-white-50" data-bs-toggle="modal" data-bs-target="#staffLoginModal">
+               @*  <button type="button" class="btn btn-dark w-100 text-white-50" data-bs-toggle="modal" data-bs-target="#staffLoginModal">
                     <i class="fa-solid fa-lock me-1"></i> Staff Portal Login
-                </button>
+                </button> *@
             </div>
 
             <div class="mobile-contact-info mt-4 pt-3 border-top border-secondary border-opacity-25 text-white-50 small">
@@ -191,7 +193,7 @@
                     <form id="staffLoginForm" onsubmit="event.preventDefault(); alert('Demo environment: Staff credentials simulated successfully.'); $('#staffLoginModal').modal('hide');">
                         <div class="mb-3">
                             <label class="form-label text-white small">Employee ID or Corporate Email</label>
-                            <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="agent@lotka.com" required value="dxb.dispatcher@lotka.com" />
+                            <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="agent@lotka.com" required value="dxb.dispatcher@lotka.com" />
                         </div>
                         <div class="mb-3">
                             <label class="form-label text-white small">Portal Password</label>
@@ -221,5 +223,9 @@
     <!-- Seamless SPA Navigation & Client Logic -->
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+   @*  <!-- ══ LOTKA AI Female Video Assistant Widget ══ -->
+    @await Html.PartialAsync("_AssistantWidget")
+    <script src="~/js/assistant.js" asp-append-version="true"></script> *@
 </body>
 </html>
