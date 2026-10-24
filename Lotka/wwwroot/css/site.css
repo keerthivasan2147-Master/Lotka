@@ -1721,17 +1721,17 @@ body.lotka-dark-theme {
 @media (min-width: 1600px) {
     .lotka-faq-hero .faq-ai-hotspot {
         top: 78%;
-        width: clamp(65px, 8vw, 130px);
-        height: clamp(55px, 8vw, 100px);
+        width: clamp(65px, 9vw, 160px);
+        height: clamp(55px, 8vw, 130px);
     }
 }
 
 /* 1366 × 768 and desktop / laptop */
 @media (min-width: 1200px) and (max-width: 1599.98px) {
     .lotka-faq-hero .faq-ai-hotspot {
-        left: 32%;
-        top: 74%;
-        width: clamp(65px, 8vw, 130px);
+        left: 30.5%;
+        top: 78%;
+        width: clamp(65px, 12vw, 180px);
         height: clamp(55px, 8vw, 100px);
     }
 }
@@ -1759,8 +1759,8 @@ body.lotka-dark-theme {
 /* Tablet: 768 × 1024 and similar landscape/tablet widths */
 @media (min-width: 768px) and (max-width: 899.98px) {
     .lotka-faq-hero .faq-ai-hotspot {
-        left: 13%;
-        top: 71%;
+        left: 8%;
+        top: 77%;
         width: 150px;
         height: 130px;
     }
